@@ -4,7 +4,9 @@ export const SettingsContext = React.createContext();
 
 const SettingsProvider = props => {
 
-  const state = {}
+  const state = {
+    
+  }
 
   return (
     <SettingsContext.Provider value={state}>
