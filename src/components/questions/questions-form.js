@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Card, Button } from 'react-bootstrap';
-import useForm from '../../hooks/form'
+import useForm from '../../hooks/form';
 
 const QuestionsForm = (props) => {
 
@@ -39,95 +39,97 @@ const QuestionsForm = (props) => {
   }
 
   return(
-    <Form onSubmit={handleTheSubmit}>
-      <Form.Group controlId="exampleForm.ControlInput1">
-        <Form.Label>Questions</Form.Label>
-        <Form.Control onChange={handleChange} type="text" placeholder="Enter a new question" name="question" required isInvalid/>
-      </Form.Group>
-      <Form.Group controlId="exampleForm.ControlSelect1">
-        <Form.Label>Category</Form.Label>
-        <Form.Control as="select" name="category" onChange={handleChange} required isInvalid>
-          <option key='blankChoice' hidden value> Select your category... </option>
-          <option value="HTML">HTML</option>
-          <option value="CSS">CSS</option>
-          <option value="JavaScript">JavaScript</option>
-        </Form.Control>
-      </Form.Group>
-      <Form.Group controlId="formBasicRange">
-        <Form.Label>Difficulty</Form.Label>
-        <Form.Control type="range" min="1" max="3" name="difficulty" onChange={handleChange} defaultValue="1" />
-      </Form.Group>
-      <Form.Group controlId="exampleForm.ControlInput1">
-        <Form.Label>Answer Options</Form.Label>
-          <Form.Control type="text" name="answer_a" placeholder="Enter a new question" onChange={handleChange} required isInvalid/>
-          <Form.Control type="text" name="answer_b" placeholder="Enter a new question" onChange={handleChange} required isInvalid/>
-            <button
-              className="btn btn-link"
-              type="button"
-              onClick={() => handleAddFields()}
-            >
-              +
-            </button>
-          {inputFields.map((inputFields, index) => ( 
-            <>
-              <Form.Control 
-                type="text" 
-                key={`${inputFields}~${index}`} 
-                placeholder="Enter a new question"
-                value={inputFields.answerOption}
-                onChange={event => handleInputChange(index, event)}  
-                name={`answer_${answerLettersArr[index+2].toLowerCase()}`}
-                required isInvalid
-              />
+    <Card style={{ width: '18rem' }}>
+      <Form onSubmit={handleTheSubmit}>
+        <Form.Group controlId="exampleForm.ControlInput1">
+          <Form.Label>Questions</Form.Label>
+          <Form.Control onChange={handleChange} type="text" placeholder="Enter a new question" name="question" required isInvalid/>
+        </Form.Group>
+        <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>Category</Form.Label>
+          <Form.Control as="select" name="category" onChange={handleChange} required isInvalid>
+            <option key='blankChoice' hidden value> Select your category... </option>
+            <option key='HTML' value="HTML">HTML</option>
+            <option key='CSS' value="CSS">CSS</option>
+            <option key='JavaScript' value="JavaScript">JavaScript</option>
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="formBasicRange">
+          <Form.Label>Difficulty</Form.Label>
+          <Form.Control type="range" min="1" max="3" name="difficulty" onChange={handleChange} defaultValue="1" />
+        </Form.Group>
+        <Form.Group controlId="exampleForm.ControlInput1">
+          <Form.Label>Answer Options</Form.Label>
+            <Form.Control type="text" name="answer_a" key="answer_a" placeholder="Enter a new question" onChange={handleChange} required isInvalid/>
+            <Form.Control type="text" name="answer_b" key="answer_b" placeholder="Enter a new question" onChange={handleChange} required isInvalid/>
               <button
                 className="btn btn-link"
                 type="button"
-                onClick={() => handleRemoveFields(index)}
+                onClick={() => handleAddFields()}
               >
-                -
+                +
               </button>
-            </>
-          ))}
-      </Form.Group>
-      <Form.Group controlId="exampleForm.ControlSelect2">
-        <Form.Label>Correct Answeer</Form.Label>
-        <fieldset>
-          <Form.Check
-            type='radio'
-            label={answerLettersArr[0]}
-            key="A"
-            name='correct_answer'
-            value={`answer_${answerLettersArr[0].toLowerCase()}`}
-            onChange={handleChange} 
-          />
-          <Form.Check
-            type='radio'
-            label={answerLettersArr[1]}
-            key="B"
-            name='correct_answer'
-            value={`answer_${answerLettersArr[1].toLowerCase()}`}
-            onChange={handleChange} 
-          />
-          {inputFields.map((item, index) => (
+            {inputFields.map((inputFields, index) => ( 
+              <>
+                <Form.Control 
+                  type="text" 
+                  key={`${inputFields}~${index}`} 
+                  placeholder="Enter a new question"
+                  value={inputFields.answerOption}
+                  onChange={event => handleInputChange(index, event)}  
+                  name={`answer_${answerLettersArr[index+2].toLowerCase()}`}
+                  required isInvalid
+                />
+                <button
+                  className="btn btn-link"
+                  type="button"
+                  onClick={() => handleRemoveFields(index)}
+                >
+                  -
+                </button>
+              </>
+            ))}
+        </Form.Group>
+        <Form.Group controlId="exampleForm.ControlSelect2">
+          <Form.Label>Correct Answeer</Form.Label>
+          <fieldset>
             <Form.Check
               type='radio'
-              label={answerLettersArr[index+2]}
-              key={`${item}~${index}`}
+              label={answerLettersArr[0]}
+              key="A"
               name='correct_answer'
-              value={`answer_${answerLettersArr[index+2].toLowerCase()}`}
+              value={`answer_${answerLettersArr[0].toLowerCase()}`}
               onChange={handleChange} 
             />
-          ))}
-          </fieldset>
-      </Form.Group>
-      <Form.Group controlId="exampleForm.ControlTextarea1">
-        <Form.Label>Tags</Form.Label>
-        <Form.Control as="textarea" rows={3} name="tags" onChange={handleChange} placeholder="separate your tags with commas"/>
-      </Form.Group>
-      <Button type="submit">
-        Submit
-      </Button>
-    </Form>
+            <Form.Check
+              type='radio'
+              label={answerLettersArr[1]}
+              key="B"
+              name='correct_answer'
+              value={`answer_${answerLettersArr[1].toLowerCase()}`}
+              onChange={handleChange} 
+            />
+            {inputFields.map((item, index) => (
+              <Form.Check
+                type='radio'
+                label={answerLettersArr[index+2]}
+                key={`${item}~${index}`}
+                name='correct_answer'
+                value={`answer_${answerLettersArr[index+2].toLowerCase()}`}
+                onChange={handleChange} 
+              />
+            ))}
+            </fieldset>
+        </Form.Group>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Label>Tags</Form.Label>
+          <Form.Control as="textarea" rows={3} name="tags" onChange={handleChange} placeholder="separate your tags with commas"/>
+        </Form.Group>
+        <Button type="submit">
+          Submit
+        </Button>
+      </Form>
+    </Card>
   )
 
 }
