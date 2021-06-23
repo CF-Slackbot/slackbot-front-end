@@ -42,7 +42,7 @@ const QuestionsForm = (props) => {
     <Card style={{ width: '18rem' }}>
       <Form onSubmit={handleTheSubmit}>
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Questions</Form.Label>
+          <Form.Label>Question</Form.Label>
           <Form.Control onChange={handleChange} type="text" placeholder="Enter a new question" name="question" required isInvalid/>
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect1">
@@ -91,7 +91,7 @@ const QuestionsForm = (props) => {
             ))}
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect2">
-          <Form.Label>Correct Answeer</Form.Label>
+          <Form.Label>Correct Answer</Form.Label>
           <fieldset>
             <Form.Check
               type='radio'

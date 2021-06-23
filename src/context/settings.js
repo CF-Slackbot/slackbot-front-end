@@ -4,11 +4,11 @@ export const SettingsContext = React.createContext();
 
 const SettingsProvider = props => {
 
-  const [questionsModal, setQuestionsModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   const state = {
-    questionsModal,
-    changeQuestionsModal: setQuestionsModal
+    showModal,
+    changeModalDisplay: setShowModal
   }
 
   return (
