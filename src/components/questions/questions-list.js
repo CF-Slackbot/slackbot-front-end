@@ -27,13 +27,8 @@ const QuestionsList = (props) => {
   //   setOptions(options)
   // }
 
-  // const displayModal = () => {
-  //   changeQuestionsModal(true)
-  // }
-
   return(
     <>
-      {/* <h1>test</h1> */}
       <ul>
         {props.questionsList.map((item, index) => (
           <li key={index}>
