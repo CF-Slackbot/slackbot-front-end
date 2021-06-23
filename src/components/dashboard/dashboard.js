@@ -10,30 +10,37 @@ const Dashboard = () => {
           <h1>Welcome to the Slack Bot Dashboard</h1>
         </section>
         <NavLink className="navlink" to="/guide">
-          <section className="dash-s">
+          <section className="dash-s guide">
             <h2>Guide</h2>
           </section>
         </NavLink>
       </div>
       <div>
         <NavLink className="navlink" to="/results">
-          <section className="dash-lg">
+          <section className="dash-lg results">
             <h2>Results</h2>
           </section>
         </NavLink>
       </div>    
       <div>
         <NavLink className="navlink" to="/questions">
-          <section className="dash-s">
+          <section className="dash-s questions">
             <h2>Questions</h2>
           </section>
         </NavLink>
         <NavLink className="navlink" to="/admin">
-          <section className="dash-m">
+          <section className="dash-m admin">
             <h2>Admin</h2>
           </section>
         </NavLink>
       </div>
+      <div>
+        <NavLink className="navlink" to="/about">
+          <section className="dash-lg about">
+            <h2>About Us</h2>
+          </section>
+        </NavLink>
+      </div>    
     </section>
   )
 }

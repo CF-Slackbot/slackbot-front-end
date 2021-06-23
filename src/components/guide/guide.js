@@ -3,7 +3,35 @@ import React from 'react';
 const Guide = () => {
   return (
     <>
-    <h1>guide</h1>
+      <h1>Guide: How to Use </h1>
+      <section className="guide-wrapper">
+        <div>
+          <section className="guide-left red">
+            <h2>Purpose</h2>
+          </section>
+          <section className="guide-right"></section>
+        </div>
+              <div>
+          <section className="guide-left yellow">
+            <h2>Questions API</h2>
+          </section>
+          <section className="guide-right"></section>
+        </div>
+        <div>
+          <section className="guide-left green">
+            <h2>Results</h2>
+          </section>
+          <section className="guide-right"></section>
+        </div>
+        <div>
+          <section className="guide-left blue"></section>
+          <section className="guide-right"></section>
+        </div>
+        <div>
+          <section className="guide-left purple"></section>
+          <section className="guide-right"></section>
+        </div>
+      </section>
     </>
   )
 }

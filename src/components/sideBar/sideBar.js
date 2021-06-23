@@ -20,16 +20,16 @@ const SideBar = () => {
           <NavLink className="navlink" to="/">Dashboard</NavLink>
         </li>
         <li>
-          <img src={questions} alt="questions" className="icons" />
-          <NavLink className="navlink" to="/questions">Questions</NavLink>
-        </li>
-        <li>
           <img src={help} alt="help" className="icons" />
           <NavLink className="navlink" to="/guide">Guide</NavLink>
         </li>
         <li>
           <img src={results} alt="results" className="icons" />
           <NavLink className="navlink" to="/results">Results</NavLink>
+        </li>
+        <li>
+          <img src={questions} alt="questions" className="icons" />
+          <NavLink className="navlink" to="/questions">Questions</NavLink>
         </li>
         <li>
           <img src={admin} alt="admin" className="icons" />
@@ -41,7 +41,7 @@ const SideBar = () => {
         </li>
         <li>
           <img src={logout} alt="logout" className="icons" />
-          <LogoutButton className="navlink">Logout</LogoutButton>
+          <LogoutButton className="navlink">Log out</LogoutButton>
         </li>
       </ul>
       </div>

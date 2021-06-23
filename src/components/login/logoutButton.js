@@ -11,7 +11,7 @@ function LogoutButton() {
 
   return isAuthenticated && (
     <>
-      <Button onClick={() => {
+      <Button className="logout-btn" onClick={() => {
         logout({ returnTo: window.location.origin });
       }}>Log out</Button>
     </>

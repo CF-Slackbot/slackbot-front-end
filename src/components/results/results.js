@@ -66,7 +66,7 @@ const Results = () => {
 
   return (
     <Container fluid="md" maxWidth="sm">
-      <h1>results</h1>
+      <h1>Results</h1>
       <Row>
         <Col>
           <BarChart
