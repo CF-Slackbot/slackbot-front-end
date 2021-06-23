@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import useAjax from "../../hooks/ajax.js";
-import BarChart from "./results-graph";
+import BarChart from "./results-graph.js";
+import ResultTable from "./results-table.js";
 
 const Results = () => {
   const [list, setList] = useState([]);
@@ -23,15 +25,15 @@ const Results = () => {
     }
   }, [response]);
 
-  const convertToObj = (array, property) => {
-    return array.reduce(function (obj, item) {
-      obj[item[property]] = obj[item[property]] || [];
-      obj[item[property]].push(item);
-      return obj;
-    }, Object.create(null));
-  };
+  // const convertToObj = (array, property) => {
+  //   return array.reduce(function (obj, item) {
+  //     obj[item[property]] = obj[item[property]] || [];
+  //     obj[item[property]].push(item);
+  //     return obj;
+  //   }, Object.create(null));
+  // };
 
-  let users = convertToObj(resultData, `user`);
+  // let users = convertToObj(resultData, `user`);
 
   let findQNum = (arr, cat) => {
     if (!arr) return;
@@ -63,17 +65,31 @@ const Results = () => {
   let inCorrectJsQ = incorrectQ(resultData, "JavaScript");
 
   return (
-    <>
+    <Container fluid="md" maxWidth="sm">
       <h1>Results</h1>
-      <BarChart
-        css={cssQ}
-        iCss={inCorrectCssQ}
-        html={htmlQ}
-        iHtml={inCorrectHtmlQ}
-        js={jsQ}
-        iJs={inCorrectJsQ}
-      />
-    </>
+      <Row>
+        <Col>
+          <BarChart
+            css={cssQ}
+            iCss={inCorrectCssQ}
+            html={htmlQ}
+            iHtml={inCorrectHtmlQ}
+            js={jsQ}
+            iJs={inCorrectJsQ}
+          />
+        </Col>
+        <Col style={{ margin: "auto" }}>
+          <ResultTable
+            css={cssQ}
+            iCss={inCorrectCssQ}
+            html={htmlQ}
+            iHtml={inCorrectHtmlQ}
+            js={jsQ}
+            iJs={inCorrectJsQ}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

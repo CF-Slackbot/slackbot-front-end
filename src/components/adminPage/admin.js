@@ -1,48 +1,58 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useAjax from '../../hooks/ajax'
 import AdminForm from './admin-form';
+import Pagination from '../pagination.js';
+import UserList from './user-list.js';
+import axios from 'axios';
 
 const Admin = () => {
 
   const [userList, setUserList] = useState([]);
-  const { setOptions, response } = useAjax();
+  const { setOptions, response, options } = useAjax();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(10);
+  const usersList = Array.from(userList);
 
-  const qAPI = "https://dev-d6ditd3b.us.auth0.com/api/v2/users";
+  const API = "https://dev-d6ditd3b.us.auth0.com/api/v2/users";
   const uAPI = process.env.REACT_APP_USER_URL;
 
-  const getUsers = useCallback(async () => {
-    const options = {
-      method: 'get',
-      url: uAPI,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
-      }
-    };
-    setOptions(options)
-  }, [setOptions])
-
-  useEffect(() => getUsers(), [getUsers]);
+  const _getUsers = async () => {
+    try {
+      setOptions({
+        method: 'get',
+        url: uAPI,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
+        }
+      })
+    } catch (e) {
+      console.error(e.message);
+    }
+  }
 
   useEffect(() => {
-    if (response) {
-      response && setUserList(response);
+    console.log('options', options);
+    if (options.method === 'get') {
+      setUserList(response)
+    } else if (options.method === 'post' || options.method === 'patch') {
+      setUserList([...userList, response])
     }
-  }, [response, getUsers, setUserList]);
+  }, [response])
+
+  useEffect(_getUsers, []);
 
   console.log('user list', userList);
 
-  const addUser = async (user) => {
-    console.log("IS THIS USER?", user)
+  const _addUser = async (user) => {
     try {
-      const options = {
+      setOptions({
         method: 'post',
-        url: qAPI,
+        url: API,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
         },
-        // dataType: 'json',
         data: {
           email: user.email,
           connection: 'CF-Slackbot-DB',
@@ -51,19 +61,48 @@ const Admin = () => {
             role: user.role
           }
         }
-      }
-      console.log()
-      console.log("OPTIONS", options)
-      await setOptions(options)
+      })
     } catch (e) {
-      console.error(e.message)
+      console.error(e.message);
     }
   }
+
+
+  const deleteUser = async (id) => {
+    const newUsers = userList.filter(user => user.user_id !== id);
+    await axios({
+      method: 'delete',
+      url: `${API}/${id}`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
+      }
+    });
+    setUserList(newUsers);
+  };
+
+  // for Pagination
+  const indexOfLastPost = currentPage * postPerPage
+  const indexOfFirstPost = indexOfLastPost - postPerPage
+  const currentPosts = usersList.slice(indexOfFirstPost, indexOfLastPost)
+
+  const paginate = (pageNum) => setCurrentPage(pageNum)
+  // console.log('list', list);
 
   return (
     <>
       <h1>Admin Portal</h1>
-      <AdminForm addUser={addUser} />
+      <AdminForm addUser={_addUser} />
+      <UserList
+        userList={currentPosts}
+        deleteUser={deleteUser}
+        setUserList={setUserList}
+      />
+      <Pagination
+        postsPerPage={postPerPage}
+        totalPosts={usersList.length}
+        setCurrentPage={paginate}
+      />
     </>
   )
 }
