@@ -36,7 +36,6 @@ const QuestionsList = (props) => {
 
   return(
     <>
-      {/* <h1>test</h1> */}
       <ul>
         {props.questionsList.map((item, index) => (
           <li key={index}>

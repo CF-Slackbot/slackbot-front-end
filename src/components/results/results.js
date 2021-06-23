@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import useAjax from "../../hooks/ajax.js";
+import BarChart from './results-graph'
+
 
 const Results = () => {
   const [list, setList] = useState([]);
@@ -47,6 +49,7 @@ const Results = () => {
           <li key={index}>{user}</li>
         ))}
       </ul>
+      <BarChart />
     </>
   );
 };
