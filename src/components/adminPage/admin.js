@@ -1,11 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useAjax from '../../hooks/ajax'
 import AdminForm from './admin-form';
+import Pagination from '../pagination.js';
+import UserList from './user-list.js';
 
 const Admin = () => {
 
   const [userList, setUserList] = useState([]);
   const { setOptions, response } = useAjax();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(10);
+  const usersList = Array.from(userList);
 
   const qAPI = "https://dev-d6ditd3b.us.auth0.com/api/v2/users";
   const uAPI = process.env.REACT_APP_USER_URL;
@@ -60,10 +65,39 @@ const Admin = () => {
     }
   }
 
+  const deleteUser = async (id) => {
+    const options = {
+      method: 'get',
+      url: `${uAPI}/${id}`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
+      }
+    }
+    await setOptions(options);
+  };
+
+  // for Pagination
+  const indexOfLastPost = currentPage * postPerPage
+  const indexOfFirstPost = indexOfLastPost - postPerPage
+  const currentPosts = usersList.slice(indexOfFirstPost, indexOfLastPost)
+
+  const paginate = (pageNum) => setCurrentPage(pageNum)
+  // console.log('list', list);
+
   return (
     <>
       <h1>admin</h1>
       <AdminForm addUser={addUser} />
+      <UserList
+        userList={currentPosts}
+        deleteUser={deleteUser}
+      />
+      <Pagination
+        postsPerPage={postPerPage}
+        totalPosts={usersList.length}
+        setCurrentPage={paginate}
+      />
     </>
   )
 }
