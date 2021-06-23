@@ -72,6 +72,7 @@ const Admin = () => {
       }
     }
     await setOptions(options);
+
   };
 
   // for Pagination
