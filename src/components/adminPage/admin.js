@@ -35,7 +35,7 @@ const Admin = () => {
     }
   }, [response, getUsers, setUserList]);
 
-  console.log('user list', userList);
+  // console.log('user list', userList);
 
   const addUser = async (user) => {
     console.log("IS THIS USER?", user)

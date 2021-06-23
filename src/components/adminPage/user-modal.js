@@ -8,7 +8,6 @@ const UserModal = (props) => {
 
   const context = useContext(SettingsContext);
   const [ handleSubmit, handleChange, values ] = useForm(props.updateUser);
-  console.log('props selected', props.selectedUser);
 
   return (
 

@@ -18,7 +18,6 @@ const UserList = props => {
   }
   const updateUser = async (user) => {
     
-    console.log('user', user); 
     try {
       const options = {
         method: 'patch',
@@ -38,10 +37,8 @@ const UserList = props => {
     } catch (e) {
       console.error(e.message)
     }
-  }
-
- console.log('selected user', selectedUser);
-
+  } 
+ 
   return (
     <>
       <ul>
