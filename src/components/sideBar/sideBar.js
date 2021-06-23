@@ -1,27 +1,39 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import dashboard from '../../assets/dashboard.png'
+import questions from '../../assets/questions.png'
+import help from '../../assets/help.png'
+import results from '../../assets/results.png'
+import admin from '../../assets/admin.png'
 
 
 const SideBar = () => {
   return (
     <>
+      <div className="sidenav">
       <ul>
         <li>
-          <NavLink to="/">Dashboard</NavLink>
+          <img src={dashboard} alt="dashboard" className="icons"/>
+          <NavLink className="navlink" to="/">Dashboard</NavLink>
         </li>
         <li>
-          <NavLink to="/questions">Questions</NavLink>
+          <img src={questions} alt="questions" className="icons" />
+          <NavLink className="navlink" to="/questions">Questions</NavLink>
         </li>
         <li>
-          <NavLink to="/guide">Guide</NavLink>
+          <img src={help} alt="help" className="icons" />
+          <NavLink className="navlink" to="/guide">Guide</NavLink>
         </li>
         <li>
-          <NavLink to="/results">Results</NavLink>
+          <img src={results} alt="results" className="icons" />
+          <NavLink className="navlink" to="/results">Results</NavLink>
         </li>
         <li>
-          <NavLink to="/admin">Admin</NavLink>
+          <img src={admin} alt="admin" className="icons" />
+          <NavLink className="navlink" to="/admin">Admin</NavLink>
         </li>
       </ul>
+      </div>
     </>
   )
 }

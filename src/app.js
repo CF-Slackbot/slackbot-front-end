@@ -17,21 +17,23 @@ const App = (props) => {
         <BrowserRouter>
           {props.auth0.isAuthenticated ? <SideBar /> : null}
           <Switch>
-            <Route exact path="/">
-              {props.auth0.isAuthenticated ? <Dashboard /> : <Login />}
-            </Route>
-            <Route exact path="/questions">
-              {props.auth0.isAuthenticated ? <Questions /> : <Login />}
-            </Route>
-            <Route exact path="/results">
-              {props.auth0.isAuthenticated ? <Results /> : <Login />}
-            </Route>
-            <Route exact path="/admin">
-              {props.auth0.isAuthenticated ? <Admin /> : <Login />}
-            </Route>
-            <Route exact path="/guide">
-              {props.auth0.isAuthenticated ? <Guide /> : <Login />}
-            </Route>
+            <div className="main">
+              <Route exact path="/">
+                {props.auth0.isAuthenticated ? <Dashboard /> : <Login />}
+              </Route>
+              <Route exact path="/questions">
+                {props.auth0.isAuthenticated ? <Questions /> : <Login />}
+              </Route>
+              <Route exact path="/results">
+                {props.auth0.isAuthenticated ? <Results /> : <Login />}
+              </Route>
+              <Route exact path="/admin">
+                {props.auth0.isAuthenticated ? <Admin /> : <Login />}
+              </Route>
+              <Route exact path="/guide">
+                {props.auth0.isAuthenticated ? <Guide /> : <Login />}
+              </Route>
+            </div>
           </Switch>
         </BrowserRouter>
       </SettingsContext>
