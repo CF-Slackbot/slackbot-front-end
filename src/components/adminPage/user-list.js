@@ -17,7 +17,6 @@ const UserList = props => {
     context.changeModalDisplay(true);
   }
   const updateUser = async (user) => {
-    
     try {
       const options = {
         method: 'patch',
@@ -32,7 +31,7 @@ const UserList = props => {
           }
         }
       }
-      await setOptions(options)
+      setOptions(options)
       context.changeModalDisplay(false);
     } catch (e) {
       console.error(e.message)
