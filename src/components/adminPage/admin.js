@@ -24,18 +24,19 @@ const Admin = () => {
         'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
       }
     };
-    setOptions(options)
+    setOptions(options);
+    setUserList(response);
   }, [setOptions])
 
   useEffect(() => getUsers(), [getUsers]);
 
-  useEffect(() => {
-    if (response) {
-      response && setUserList(response);
-    }
-  }, [response, getUsers, setUserList]);
+  // useEffect(() => {
+  //   if (response) {
+  //     response && setUserList(response);
+  //   }
+  // }, [response, getUsers, setUserList, usersList]);
 
-  // console.log('user list', userList);
+  console.log('user list', userList);
 
   const addUser = async (user) => {
     console.log("IS THIS USER?", user)
@@ -57,12 +58,14 @@ const Admin = () => {
         }
       }
       await setOptions(options)
+      await setUserList([...userList, response]);
     } catch (e) {
       console.error(e.message)
     }
   }
 
   const deleteUser = async (id) => {
+    // const newUsers = userList.filter(user => user.user_id !== id);
     const options = {
       method: 'delete',
       url: `${API}/${id}`,
@@ -72,7 +75,7 @@ const Admin = () => {
       }
     }
     await setOptions(options);
-
+    // await setUserList(newUsers);
   };
 
   // for Pagination
