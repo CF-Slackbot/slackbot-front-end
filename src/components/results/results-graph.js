@@ -42,7 +42,7 @@ const BarChart = (props) => {
         backgroundColor: 'rgba(255, 43, 0, 1)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: [65]
+        data: [props.html-props.iHtml]
       }, 
       {
         stack: 'HTML',
@@ -50,7 +50,7 @@ const BarChart = (props) => {
         backgroundColor: 'rgba(255, 43, 0, 0.5)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: [10]
+        data: [props.iHtml]
       }, 
       {
         stack: 'CSS',
@@ -58,7 +58,7 @@ const BarChart = (props) => {
         backgroundColor: 'rgba(0, 99, 255, 1)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: [59]
+        data: [props.css-props.iCss]
       }, 
       {
         stack: 'CSS',
@@ -66,7 +66,7 @@ const BarChart = (props) => {
         backgroundColor: 'rgba(0, 99, 255, 0.5)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: [23]
+        data: [props.iCss]
       }, 
       {
         stack: 'JavaScript',
@@ -74,7 +74,8 @@ const BarChart = (props) => {
         backgroundColor: 'rgba(0, 255, 66, 1)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: [90]
+        data: [props.js-props.iJs]
+
       },
       {
         stack: 'JavaScript',
@@ -82,7 +83,7 @@ const BarChart = (props) => {
         backgroundColor: 'rgba(0, 255, 66, 0.5)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: [20]
+        data: [props.iJs]
       }
     ]
   }
