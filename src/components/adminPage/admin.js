@@ -12,7 +12,7 @@ const Admin = () => {
   const [postPerPage] = useState(10);
   const usersList = Array.from(userList);
 
-  const qAPI = "https://dev-d6ditd3b.us.auth0.com/api/v2/users";
+  const API = "https://dev-d6ditd3b.us.auth0.com/api/v2/users";
   const uAPI = process.env.REACT_APP_USER_URL;
 
   const getUsers = useCallback(async () => {
@@ -42,12 +42,11 @@ const Admin = () => {
     try {
       const options = {
         method: 'post',
-        url: qAPI,
+        url: API,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
         },
-        // dataType: 'json',
         data: {
           email: user.email,
           connection: 'CF-Slackbot-DB',
@@ -57,8 +56,6 @@ const Admin = () => {
           }
         }
       }
-      console.log()
-      console.log("OPTIONS", options)
       await setOptions(options)
     } catch (e) {
       console.error(e.message)
@@ -67,8 +64,8 @@ const Admin = () => {
 
   const deleteUser = async (id) => {
     const options = {
-      method: 'get',
-      url: `${uAPI}/${id}`,
+      method: 'delete',
+      url: `${API}/${id}`,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
