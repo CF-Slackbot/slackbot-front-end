@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import useAjax from "../../hooks/ajax.js";
 import BarChart from "./results-graph.js";
 import ResultTable from "./results-table.js";
+
 const Results = () => {
   const [list, setList] = useState([]);
   const { setOptions, response } = useAjax();

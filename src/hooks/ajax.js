@@ -4,7 +4,7 @@ import axios from 'axios';
 const useAjax = () => {
 
   const [options, setOptions] = useState({});
-  const [response, setResponse] = useState({});
+  const [response, setResponse] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,7 +22,7 @@ const useAjax = () => {
     }
     ajax();
   }, [options]);
-  return { setOptions, response, error, isLoading };
+  return { setOptions, response, error, isLoading, options };
 };
 
 export default useAjax;
