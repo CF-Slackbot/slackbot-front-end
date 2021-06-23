@@ -1,4 +1,4 @@
-// SIDE NAV
+// =====SIDE NAV=====
 .sidenav {
   height: 100%;
   width: 200px;
@@ -25,14 +25,13 @@
       .navlink{
         color: $black;
       }
-    // opacity: 0.3;
   }
   .icons {
     height: 50px;
   }
 }
 
-// DASHBOARD
+// =====DASHBOARD=====
 .dashboard{
   section{
     margin: 1% 0px 0px 1%;
@@ -42,7 +41,7 @@
     height: 300px;
     vertical-align: text-top;
   }
-  // BANNER
+  // -----DASHBOARD BACKGROUND IMAGES FOR HOVER-----
   .banner:hover{
     background-image:url("../assets/robot-banner.jpeg");
     background-size: cover;
@@ -50,6 +49,42 @@
     background-origin: content-box;
     transition: all 500ms;
   }
+  .guide:hover{
+    background-image:url("../assets/robot-banner.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-origin: content-box;
+    transition: all 500ms;
+  }
+  .results:hover{
+    background-image:url("../assets/robot-banner.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-origin: content-box;
+    transition: all 500ms;
+  }
+  .questions:hover{
+    background-image:url("../assets/robot-banner.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-origin: content-box;
+    transition: all 500ms;
+  }
+  .admin:hover{
+    background-image:url("../assets/robot-banner.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-origin: content-box;
+    transition: all 500ms;
+  }
+  .about:hover{
+    background-image:url("../assets/robot-banner.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-origin: content-box;
+    transition: all 500ms;
+  }
+  // -----DASHBOARD CARD TYPES-----
   // SMALL
   .dash-s{
     background-color: rgb(155,190,255);
@@ -57,7 +92,7 @@
   }     
   .dash-s:hover{
     opacity: 0.7;
-    transition: 350ms;
+    transition: 1000ms;
   }
   // MEDIUM
   .dash-m{
@@ -75,7 +110,7 @@
   }
   .dash-lg:hover{
     opacity: 0.7;
-    transition: 350ms;
+    transition: 1000ms;
   } 
   .navlink{
     text-decoration: none;
@@ -88,4 +123,109 @@
   }  
 }
 
+// =====LOGOUT BUTTON=====
+.logout-btn{
+  border: none;
+  background: none;
+	color: rgb(228, 228, 228);
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+  outline: inherit;
+  margin-left: 12px;
+}
+.logout-btn:hover{
+  border: none;
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+  outline: inherit;
+  margin-left: 12px;
+}
+
+// =====GUIDE=====
+.guide-wrapper{
+  section{
+    margin: 1% 0px 0px 1%;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px;
+    height: 300px;
+    vertical-align: text-top;
+  }
+  .guide-left{
+    width: 63%;
+  }
+  .guide-right{
+    width: 33%;
+    background-color: grey;
+  }
+  .red{
+    background-color: $red;
+  }
+  .yellow{
+    background-color: $yellow;
+  }
+  .green{
+    background-color: $green;
+  }
+  .blue{
+    background-color: $blue;
+  }
+  .purple{
+    background-color: $purple;
+  }
+}
+
+// =====ABOUT US CARD FLIP=====
+.center{
+  display: flex;
+  justify-content: center;
+}
+.about-card-container {
+  height: 400px;
+  width: 400px;
+  margin: 30px;
+  perspective: 600;
+  position: relative;
+  justify-content: center;
+  display: flex;
+}
+.about-img{
+  height: 390px;
+}
+.about-card {
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+  width: 100%;
+  border-radius: 10px;
+  border: thick $black solid;
+  display: flex;
+}
+.about-card:hover {
+  transform: rotateY(180deg);
+}
+.about-card .side {
+  backface-visibility: hidden;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.about-card .back {
+  transform: rotateY(180deg);
+  background-color: $purple;
+}
+.connect {
+  margin-top: 140px;
+  margin-left: 10px;
+}
+.authors-social{
+  height: 30px;
+}
 

@@ -6,11 +6,13 @@ body {
 // Pushes 'main' to the right of the nav
 .main {
   margin-left: 200px; /* Same as the width of the sidenav */
+  margin-bottom: 10px;
 }
 
 // h1-h6 TAGS
 h1 {
   font-size: 60px;
+  font-family: $font-secondary;
   color: rgb(66, 66, 66);
 }
 

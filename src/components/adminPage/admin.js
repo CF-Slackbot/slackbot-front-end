@@ -62,7 +62,7 @@ const Admin = () => {
 
   return (
     <>
-      <h1>admin</h1>
+      <h1>Admin Portal</h1>
       <AdminForm addUser={addUser} />
     </>
   )

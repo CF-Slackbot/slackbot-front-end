@@ -64,7 +64,7 @@ const Results = () => {
 
   return (
     <>
-      <h1>results</h1>
+      <h1>Results</h1>
       <BarChart
         css={cssQ}
         iCss={inCorrectCssQ}
