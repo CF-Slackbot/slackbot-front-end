@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Form, Card, Button } from 'react-bootstrap';
 import useForm from '../../hooks/form';
+import { If, Then } from 'react-if';
+import './questions-edit-form.css';
 
-const QuestionsForm = props => {
+const QuestionsEditForm = props => {
   // const [ handleSubmit, handleChange, values ] = useForm(props.addQuestion);
-  const [handleSubmit, handleChange, values] = useForm(props.addQuestion);
+  const [handleSubmit, handleChange, values] = useForm(props.editQuestion);
+  // const [inputFields, setInputFields] = useState({});
   const [inputFields, setInputFields] = useState([{ answerOption: '' }]);
+  const [modalFields, setModalFields] = useState(props.itemId);
 
   const answerLettersArr = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -26,6 +30,7 @@ const QuestionsForm = props => {
     values[index].answerOption = event.target.value;
     setInputFields(values);
     handleChange(event);
+    setModalFields(...values);
   };
 
   const handleTheSubmit = event => {
@@ -38,6 +43,16 @@ const QuestionsForm = props => {
     }
   };
 
+  console.log(
+    'here is the selectedItem FOOOOOOORM ============>>>>>>>>>',
+    props.itemId
+  );
+  console.log(
+    'here is the selectedItem inputFIELDSSSSSSSSSS ============>>>>>>>>>',
+    modalFields,
+    values
+  );
+
   return (
     <Card style={{ width: '18rem' }}>
       <Form onSubmit={handleTheSubmit}>
@@ -46,7 +61,7 @@ const QuestionsForm = props => {
           <Form.Control
             onChange={handleChange}
             type='text'
-            placeholder='Enter a new question'
+            placeholder={props.itemId.question}
             name='question'
             required
             isInvalid
@@ -93,7 +108,7 @@ const QuestionsForm = props => {
             type='text'
             name='answer_a'
             key='answer_a'
-            placeholder='Enter a new question'
+            placeholder={props.itemId.answers.answer_a}
             onChange={handleChange}
             required
             isInvalid
@@ -102,11 +117,56 @@ const QuestionsForm = props => {
             type='text'
             name='answer_b'
             key='answer_b'
-            placeholder='Enter a new question'
+            placeholder={props.itemId.answers.answer_b}
             onChange={handleChange}
             required
             isInvalid
           />
+          <If condition={props.itemId.answers.answer_c}>
+            <Form.Control
+              type='text'
+              name='answer_c'
+              key='answer_c'
+              placeholder={props.itemId.answers.answer_c}
+              onChange={handleChange}
+              required
+              isInvalid
+            />
+          </If>
+          <If condition={props.itemId.answers.answer_d}>
+            <Form.Control
+              type='text'
+              name='answer_d'
+              key='answer_d'
+              placeholder={props.itemId.answers.answer_d}
+              onChange={handleChange}
+              required
+              isInvalid
+            />
+          </If>
+          <If condition={props.itemId.answers.answer_e}>
+            <Form.Control
+              type='text'
+              name='answer_e'
+              key='answer_e'
+              placeholder={props.itemId.answers.answer_e}
+              onChange={handleChange}
+              required
+              isInvalid
+            />
+          </If>
+          <If condition={props.itemId.answers.answer_f}>
+            <Form.Control
+              type='text'
+              name='answer_f'
+              key='answer_f'
+              placeholder={props.itemId.answers.answer_f}
+              onChange={handleChange}
+              required
+              isInvalid
+            />
+          </If>
+
           <button
             className='btn btn-link'
             type='button'
@@ -119,7 +179,7 @@ const QuestionsForm = props => {
               <Form.Control
                 type='text'
                 key={`${inputFields}~${index}`}
-                placeholder='Enter a new question'
+                placeholder={`enter another answer here`}
                 value={inputFields.answerOption}
                 onChange={event => handleInputChange(index, event)}
                 name={`answer_${answerLettersArr[index + 2].toLowerCase()}`}
@@ -144,6 +204,10 @@ const QuestionsForm = props => {
               label={answerLettersArr[0]}
               key='A'
               name='correct_answer'
+              checked={
+                props.itemId.correct_answer ===
+                `answer_${answerLettersArr[0].toLowerCase()}`
+              }
               value={`answer_${answerLettersArr[0].toLowerCase()}`}
               onChange={handleChange}
             />
@@ -152,6 +216,10 @@ const QuestionsForm = props => {
               label={answerLettersArr[1]}
               key='B'
               name='correct_answer'
+              checked={
+                props.itemId.correct_answer ===
+                `answer_${answerLettersArr[1].toLowerCase()}`
+              }
               value={`answer_${answerLettersArr[1].toLowerCase()}`}
               onChange={handleChange}
             />
@@ -161,6 +229,10 @@ const QuestionsForm = props => {
                 label={answerLettersArr[index + 2]}
                 key={`${item}~${index}`}
                 name='correct_answer'
+                checked={
+                  props.itemId.correct_answer ===
+                  `answer_${answerLettersArr[index + 2].toLowerCase()}`
+                }
                 value={`answer_${answerLettersArr[index + 2].toLowerCase()}`}
                 onChange={handleChange}
               />
@@ -183,4 +255,4 @@ const QuestionsForm = props => {
   );
 };
 
-export default QuestionsForm;
+export default QuestionsEditForm;
