@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import useAjax from '../../hooks/ajax.js';
-import QuestionsForm from './questions-form'
+import QuestionsForm from './questions-form';
+import QuestionsList from './questions-list';
+import Pagination from '../pagination.js'
 
 const Questions = () => {
 
@@ -8,6 +10,10 @@ const Questions = () => {
   const { setOptions, response } = useAjax();
   const qAPI = "https://cf-slackbot-questions-api.herokuapp.com/api/v2/question"
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postPerPage] = useState(10)
+  const questionsList = Array.from(list)
+  
   const getQuestions = useCallback(async() => {
   const options = {
     method: 'get',
@@ -16,13 +22,23 @@ const Questions = () => {
   setOptions(options)
   },[setOptions])
 
-  useEffect(getQuestions, []);
+  const deleteQuestion = async(id) => {
+    const options = {
+      method: 'delete',
+      url: `${qAPI}/${id}`
+    };
+    await setOptions(options)
+  }
+
+  useEffect(() =>  getQuestions(), [getQuestions]);
 
   useEffect(() => {
     if (response){
       response && setList(response);
     } 
-  }, [response]);
+  }, [response, getQuestions, setList, questionsList]);
+
+
 
   const addQuestion = async(val) => {
     let tagValues = val.tags ? val.tags.replace(' ', '').split(',') : null
@@ -60,12 +76,27 @@ const Questions = () => {
     await setOptions(options)
   }
 
+  // for Pagination
+  const indexOfLastPost = currentPage * postPerPage
+  const indexOfFirstPost = indexOfLastPost - postPerPage
+  const currentPosts = questionsList.slice(indexOfFirstPost, indexOfLastPost)
+
+  const paginate = (pageNum) => setCurrentPage(pageNum)
   // console.log('list', list);
 
   return (
     <>
       <h1>Questions</h1>
       <QuestionsForm addQuestion={addQuestion}/>
+      <QuestionsList 
+        questionsList={currentPosts}
+        deleteQuestion={deleteQuestion}
+      />
+      <Pagination 
+        postsPerPage={postPerPage} 
+        totalPosts={questionsList.length} 
+        setCurrentPage={paginate}
+      />
     </>
   )
 }

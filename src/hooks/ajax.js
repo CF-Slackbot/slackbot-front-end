@@ -25,6 +25,4 @@ const useAjax = () => {
   return { setOptions, response, error, isLoading };
 };
 
-
-
 export default useAjax;
