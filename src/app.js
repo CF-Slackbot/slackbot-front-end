@@ -9,6 +9,7 @@ import Questions from "./components/questions/questions.js";
 import Guide from "./components/guide/guide.js";
 import Results from "./components/results/results.js";
 import Admin from "./components/adminPage/admin.js";
+import AboutUs from "./components/aboutUs/about"
 
 const App = (props) => {
   return (
@@ -32,6 +33,9 @@ const App = (props) => {
               </Route>
               <Route exact path="/guide">
                 {props.auth0.isAuthenticated ? <Guide /> : <Login />}
+              </Route>
+              <Route exact path="/about">
+                {props.auth0.isAuthenticated ? <AboutUs /> : <Login />}
               </Route>
             </div>
           </Switch>
