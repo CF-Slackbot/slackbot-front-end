@@ -1,0 +1,91 @@
+// SIDE NAV
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(66, 66, 66);
+  overflow-x: hidden;
+  li{
+    padding: 30px 10px 30px 10px;
+    border-bottom: white 1px solid;
+    font-size: 20px;
+    font-family: $font-secondary;
+    .navlink {
+      text-decoration: none;
+      color: rgb(228, 228, 228);
+      padding-left: 10px;
+    }
+  }
+  li:hover{
+    background-color: $blue;
+    transition: 350ms;
+      .navlink{
+        color: $black;
+      }
+    // opacity: 0.3;
+  }
+  .icons {
+    height: 50px;
+  }
+}
+
+// DASHBOARD
+.dashboard{
+  section{
+    margin: 1% 0px 0px 1%;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px;
+    height: 300px;
+    vertical-align: text-top;
+  }
+  // BANNER
+  .banner:hover{
+    background-image:url("../assets/robot-banner.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-origin: content-box;
+    transition: all 500ms;
+  }
+  // SMALL
+  .dash-s{
+    background-color: rgb(155,190,255);
+    width: 38%;
+  }     
+  .dash-s:hover{
+    opacity: 0.7;
+    transition: 350ms;
+  }
+  // MEDIUM
+  .dash-m{
+    background-color: rgb(165,220,105);
+    width: 58%;
+  }
+  .dash-m:hover{
+    opacity: 0.7;
+    transition: 1000ms;
+  }
+  // LARGE
+  .dash-lg{
+    background-color: rgb(120,210,250);
+    width: 97%;
+  }
+  .dash-lg:hover{
+    opacity: 0.7;
+    transition: 350ms;
+  } 
+  .navlink{
+    text-decoration: none;
+    color: rgb(66, 66, 66);
+  }  
+  .navlink:hover{
+    transition: 350ms;
+    font-style: italic;
+    color: $black;
+  }  
+}
+
+
