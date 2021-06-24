@@ -98,6 +98,7 @@ const QuestionsForm = (props) => {
             key="answer_a"
             placeholder="Enter an anwer"
             onChange={handleChange}
+            style={{marginBottom:'6px'}}
             required
           />
           <Form.Control
@@ -187,7 +188,6 @@ const QuestionsForm = (props) => {
                 name="correct_answer"
                 value={`answer_${answerLettersArr[index + 2].toLowerCase()}`}
                 onChange={handleChange}
-                // required
               />
             ))}
           </fieldset>

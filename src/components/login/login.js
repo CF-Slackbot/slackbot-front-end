@@ -1,26 +1,35 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-import LoginButton from './loginButton';
-import LogoutButton from './logoutButton';
-
+import React from "react";
+import bg from "../../assets/robot-banner.jpeg";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Login = () => {
-  return (
-    <>
-      <Card style={{ width: '18rem' }}>
-        <Card.Body>
-          <Card.Title>Log In</Card.Title>
-          <Card.Text>
-            Click Below to Log In
-          </Card.Text>
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
-          <LoginButton />
-          <LogoutButton />
-          {/* TODO: add a `LoginButton` component here that will log the user in with Auth0 */}
-        </Card.Body>
-      </Card>
-    </>
-  )
-}
+  var divStyle = {
+    backgroundImage: `url(${bg})`,
+    height: "auto",
+    minHeight: "100vh",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    overflow: "auto",
+  };
+  return (
+    !isAuthenticated && (
+      <div style={divStyle}>
+        <h1
+          className="login-header"
+          style={{ textAlign: "center", marginTop: "3vh" }}
+        >
+          Welcome To Slackbot
+        </h1>
+
+        <h3 className="login-link" onClick={loginWithRedirect}>
+          click to login
+        </h3>
+      </div>
+    )
+  );
+};
 
 export default Login;
