@@ -61,6 +61,7 @@ const QuestionsModal = props => {
     // await setOptions(options);
     // on successful update of the api it should update the list of questions again - either call out to get or update the list in state with newList = newlist.find(!updatedItem) - newList.push(options.data) setList(newList);
     context.changeModalDisplay(false);
+    props.getQuestions();
   };
 
   return (
@@ -78,7 +79,6 @@ const QuestionsModal = props => {
         <QuestionsEditForm
           updateQuestion={updateQuestion}
           question={props.question}
-          getQuestions={props.getQuestions}
         />
       </Modal.Body>
     </Modal>
