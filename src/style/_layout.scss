@@ -285,6 +285,22 @@
   height: 30px;
 }
 
+.back{
+  padding: 10px;
+  position: relative;
+}
+
+.connect{
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+}
+
+.social-icon{
+  height: 40px;
+  margin: 8px;
+}
+
 // =====USER MODAL=====
 .modal-header {
   font-family: $font-secondary;

@@ -25,3 +25,19 @@ h3 {
   font-size:30px;
   padding: 20px 0 20px 0;
 }
+
+h4 {
+  padding: 20px 0 20px 0;
+  a {
+    font-size: 35px;
+    font-family: $font-secondary;
+    color: $purple;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  a:hover {
+    color: $purple;
+    text-decoration: underline;
+    transition: 350ms;
+  }
+}
