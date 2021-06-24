@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import useAjax from "../../hooks/ajax.js";
 import BarChart from "./results-graph.js";
 import ResultTable from "./results-table.js";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Results = () => {
+  const {  isAuthenticated, isLoading } = useAuth0();
+
   const [list, setList] = useState([]);
   const { setOptions, response } = useAjax();
   const rAPI = "https://cf-slackbot-questions-api.herokuapp.com/api/v2/result";
@@ -64,7 +67,10 @@ const Results = () => {
   let jsQ = findQNum(resultData, "JavaScript");
   let inCorrectJsQ = incorrectQ(resultData, "JavaScript");
 
-  return (
+  if(isLoading){
+    return <Spinner animation="border" />
+  }
+  return isAuthenticated&& (
     <Container fluid="md" maxwidth="sm">
       <h1>Results</h1>
       <h3>See how Code Fellows students are performing by category</h3>

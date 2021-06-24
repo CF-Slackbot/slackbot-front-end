@@ -1,10 +1,17 @@
 import React from 'react';
-import { Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
+import { useAuth0 } from "@auth0/auth0-react";
 import github from '../../assets/gh.png'
 import linkedin from '../../assets/li.png'
 
 const About = () => {
+  const { isAuthenticated, isLoading } = useAuth0();
+  if (isLoading) {
+    return <Spinner animation="border" />;
+  }
+
   return (
+    isAuthenticated && (
     <Container fluid="md" maxwidth="sm">
       <h1>About Us</h1>
       <h4><a href="https://github.com/CF-Slackbot" alt="github source code" target="_blank" rel="noopener noreferrer">GitHub Source Code</a></h4>
@@ -72,8 +79,8 @@ const About = () => {
         </div>
       </section>
     </Container>
+    )
   );
-
-}
+};
 
 export default About;
