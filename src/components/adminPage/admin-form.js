@@ -11,8 +11,9 @@ const AdminForm = (props) => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      alert('Please fill in all required* fields')
+      return;
     }
-
     setValidated(true);
     handleSubmit(event);
   };
@@ -22,7 +23,7 @@ const AdminForm = (props) => {
       <Card.Body>
         <Form onSubmit={handleSubmit2} noValidate validated={validated}>
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Email*</Form.Label>
             {/* <Form.Control onChange={handleChange} type="email" placeholder="Enter user email" name="email" required isInvalid/> */}
             <Form.Control
               onChange={handleChange}
@@ -33,7 +34,7 @@ const AdminForm = (props) => {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput2">
-            <Form.Label>Temp Password</Form.Label>
+            <Form.Label>Temp Password*</Form.Label>
             {/* <Form.Control onChange={handleChange} type="password" placeholder="Enter temporary password" name="password" required isInvalid/> */}
             <Form.Control
               onChange={handleChange}
@@ -44,7 +45,7 @@ const AdminForm = (props) => {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Role</Form.Label>
+            <Form.Label>Role*</Form.Label>
             <fieldset>
               <Form.Check
                 type="radio"

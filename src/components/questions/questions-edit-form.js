@@ -1,67 +1,46 @@
 import React, { useState } from 'react';
 import { Form, Card, Button } from 'react-bootstrap';
-import useForm from '../../hooks/form';
+// import useForm from '../../hooks/form';
 import { If, Then } from 'react-if';
-import './questions-edit-form.css';
 
 const QuestionsEditForm = props => {
   // const [ handleSubmit, handleChange, values ] = useForm(props.addQuestion);
-  const [handleSubmit, handleChange, values] = useForm(props.editQuestion);
+  // const [handleSubmit, handleChange, values] = useForm(props.updateQuestion);
   // const [inputFields, setInputFields] = useState({});
-  const [inputFields, setInputFields] = useState([{ answerOption: '' }]);
-  const [modalFields, setModalFields] = useState(props.itemId);
+  const [inputFields, setInputFields] = useState([]);
+  const [modalFields, setModalFields] = useState(props.question);
+  const [validated, setValidated] = useState(false);
+  const [values, setValues] = useState(props.question)
 
   const answerLettersArr = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-  const handleAddFields = () => {
-    const values = [...inputFields];
-    values.push({ answerOption: '' });
-    setInputFields(values);
-  };
+  const handleChange = (e) => {
+    setValues(values => ({...values, [e.target.name]: e.target.value }));
+  }
 
-  const handleRemoveFields = index => {
-    const values = [...inputFields];
-    values.splice(index, 1);
-    setInputFields(values);
-  };
-
-  const handleInputChange = (index, event) => {
-    const values = [...inputFields];
-    values[index].answerOption = event.target.value;
-    setInputFields(values);
-    handleChange(event);
-    setModalFields(...values);
-  };
-
-  const handleTheSubmit = event => {
-    console.log('VALUES', values);
-    event.preventDefault();
-    if (!values.category) {
-      alert('Please select a category');
-    } else {
-      handleSubmit(event);
+  const handleSubmit = (event) => {
+    console.log("FORM HANDLE SUBMIT", event)
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      alert('Please fill in all required* fields')
+      return;
     }
+    setValidated(true);
+    props.updateQuestion(values);
+    event.target.reset();
   };
-
-  console.log(
-    'here is the selectedItem FOOOOOOORM ============>>>>>>>>>',
-    props.itemId
-  );
-  console.log(
-    'here is the selectedItem inputFIELDSSSSSSSSSS ============>>>>>>>>>',
-    modalFields,
-    values
-  );
 
   return (
     <Card style={{ width: '18rem' }}>
-      <Form onSubmit={handleTheSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId='exampleForm.ControlInput1'>
           <Form.Label>Question</Form.Label>
           <Form.Control
             onChange={handleChange}
-            type='text'
-            placeholder={props.itemId.question}
+            as='textarea'
+            defaultValue={props.question.question}
             name='question'
             required
             isInvalid
@@ -75,6 +54,7 @@ const QuestionsEditForm = props => {
             onChange={handleChange}
             required
             isInvalid
+            defaultValue={props.question.category}
           >
             <option key='blankChoice' hidden value>
               {' '}
@@ -99,16 +79,16 @@ const QuestionsEditForm = props => {
             max='3'
             name='difficulty'
             onChange={handleChange}
-            defaultValue='1'
+            defaultValue={props.question.difficulty}
           />
         </Form.Group>
-        <Form.Group controlId='exampleForm.ControlInput1'>
+        <Form.Group controlId='exampleForm.ControlInput2'>
           <Form.Label>Answer Options</Form.Label>
           <Form.Control
             type='text'
             name='answer_a'
             key='answer_a'
-            placeholder={props.itemId.answers.answer_a}
+            defaultValue={props.question.answers.answer_a}
             onChange={handleChange}
             required
             isInvalid
@@ -117,84 +97,55 @@ const QuestionsEditForm = props => {
             type='text'
             name='answer_b'
             key='answer_b'
-            placeholder={props.itemId.answers.answer_b}
+            defaultValue={props.question.answers.answer_b}
             onChange={handleChange}
             required
             isInvalid
           />
-          <If condition={props.itemId.answers.answer_c}>
+          <If condition={props.question.answers.answer_c}>
             <Form.Control
               type='text'
               name='answer_c'
               key='answer_c'
-              placeholder={props.itemId.answers.answer_c}
+              defaultValue={props.question.answers.answer_c}
               onChange={handleChange}
               required
               isInvalid
             />
           </If>
-          <If condition={props.itemId.answers.answer_d}>
+          <If condition={props.question.answers.answer_d}>
             <Form.Control
               type='text'
               name='answer_d'
               key='answer_d'
-              placeholder={props.itemId.answers.answer_d}
+              defaultValue={props.question.answers.answer_d}
               onChange={handleChange}
               required
               isInvalid
             />
           </If>
-          <If condition={props.itemId.answers.answer_e}>
+          <If condition={props.question.answers.answer_e}>
             <Form.Control
               type='text'
               name='answer_e'
               key='answer_e'
-              placeholder={props.itemId.answers.answer_e}
+              defaultValue={props.question.answers.answer_e}
               onChange={handleChange}
               required
               isInvalid
             />
           </If>
-          <If condition={props.itemId.answers.answer_f}>
+          <If condition={props.question.answers.answer_f}>
             <Form.Control
               type='text'
               name='answer_f'
               key='answer_f'
-              placeholder={props.itemId.answers.answer_f}
+              defaultValue={props.question.answers.answer_f}
               onChange={handleChange}
               required
               isInvalid
             />
           </If>
-
-          <button
-            className='btn btn-link'
-            type='button'
-            onClick={() => handleAddFields()}
-          >
-            +
-          </button>
-          {inputFields.map((inputFields, index) => (
-            <>
-              <Form.Control
-                type='text'
-                key={`${inputFields}~${index}`}
-                placeholder={`enter another answer here`}
-                value={inputFields.answerOption}
-                onChange={event => handleInputChange(index, event)}
-                name={`answer_${answerLettersArr[index + 2].toLowerCase()}`}
-                required
-                isInvalid
-              />
-              <button
-                className='btn btn-link'
-                type='button'
-                onClick={() => handleRemoveFields(index)}
-              >
-                -
-              </button>
-            </>
-          ))}
         </Form.Group>
         <Form.Group controlId='exampleForm.ControlSelect2'>
           <Form.Label>Correct Answer</Form.Label>
@@ -205,7 +156,7 @@ const QuestionsEditForm = props => {
               key='A'
               name='correct_answer'
               checked={
-                props.itemId.correct_answer ===
+                props.question.correct_answer ===
                 `answer_${answerLettersArr[0].toLowerCase()}`
               }
               value={`answer_${answerLettersArr[0].toLowerCase()}`}
@@ -217,26 +168,68 @@ const QuestionsEditForm = props => {
               key='B'
               name='correct_answer'
               checked={
-                props.itemId.correct_answer ===
+                props.question.correct_answer ===
                 `answer_${answerLettersArr[1].toLowerCase()}`
               }
               value={`answer_${answerLettersArr[1].toLowerCase()}`}
               onChange={handleChange}
             />
-            {inputFields.map((item, index) => (
+            <If condition={props.question.answers.answer_c}>
               <Form.Check
                 type='radio'
-                label={answerLettersArr[index + 2]}
-                key={`${item}~${index}`}
+                label={answerLettersArr[2]}
+                key='C'
                 name='correct_answer'
                 checked={
-                  props.itemId.correct_answer ===
-                  `answer_${answerLettersArr[index + 2].toLowerCase()}`
+                  props.question.correct_answer ===
+                  `answer_${answerLettersArr[2].toLowerCase()}`
                 }
-                value={`answer_${answerLettersArr[index + 2].toLowerCase()}`}
+                value={`answer_${answerLettersArr[2].toLowerCase()}`}
                 onChange={handleChange}
               />
-            ))}
+              </If>
+              <If condition={props.question.answers.answer_d}>
+              <Form.Check
+                type='radio'
+                label={answerLettersArr[3]}
+                key='C'
+                name='correct_answer'
+                checked={
+                  props.question.correct_answer ===
+                  `answer_${answerLettersArr[3].toLowerCase()}`
+                }
+                value={`answer_${answerLettersArr[3].toLowerCase()}`}
+                onChange={handleChange}
+              />
+              </If>
+              <If condition={props.question.answers.answer_e}>
+              <Form.Check
+                type='radio'
+                label={answerLettersArr[4]}
+                key='C'
+                name='correct_answer'
+                checked={
+                  props.question.correct_answer ===
+                  `answer_${answerLettersArr[4].toLowerCase()}`
+                }
+                value={`answer_${answerLettersArr[4].toLowerCase()}`}
+                onChange={handleChange}
+              />
+              </If>
+              <If condition={props.question.answers.answer_f}>
+              <Form.Check
+                type='radio'
+                label={answerLettersArr[5]}
+                key='C'
+                name='correct_answer'
+                checked={
+                  props.question.correct_answer ===
+                  `answer_${answerLettersArr[5].toLowerCase()}`
+                }
+                value={`answer_${answerLettersArr[5].toLowerCase()}`}
+                onChange={handleChange}
+              />
+              </If>
           </fieldset>
         </Form.Group>
         <Form.Group controlId='exampleForm.ControlTextarea1'>
