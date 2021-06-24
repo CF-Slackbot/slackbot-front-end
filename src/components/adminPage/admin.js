@@ -1,14 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { withAuth0, useAuth0 } from "@auth0/auth0-react";
+import React, { useEffect, useState } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import useAjax from '../../hooks/ajax'
 import AdminForm from './admin-form';
 import Pagination from '../pagination.js';
 import UserList from './user-list.js';
 import axios from 'axios';
-import {Container, Row, Col} from 'react-bootstrap';
-import { If, Then, Else } from 'react-if';
+import {Container, Row, Col, Spinner} from 'react-bootstrap';
+import { If } from 'react-if';
 
 const Admin = (props) => {
+  const {  isAuthenticated, isLoading } = useAuth0();
 
   const [userList, setUserList] = useState([]);
   const { setOptions, response, options } = useAjax();
@@ -103,8 +104,10 @@ const Admin = (props) => {
   const currentPosts = usersList.slice(indexOfFirstPost, indexOfLastPost);
   
   const paginate = (pageNum) => setCurrentPage(pageNum);
-
-  return (
+  if(isLoading){
+    return <Spinner animation="border" />
+  }
+  return isAuthenticated&& (
     <Container fluid>
       <h1>Admin Portal</h1>
     <If condition={loggedInUser ? loggedInUser.data.user_metadata.role === 'admin' : false}>
@@ -124,11 +127,7 @@ const Admin = (props) => {
         setCurrentPage={paginate}
       />
         </Col>
-
       </Row>
-      <Else>
-        <h2>No go!</h2>
-      </Else>
     </If>
     </Container>
   );

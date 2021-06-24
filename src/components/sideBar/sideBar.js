@@ -8,10 +8,13 @@ import admin from '../../assets/admin.png';
 import about from '../../assets/about-us.png';
 import logout from '../../assets/logout.png';
 import LogoutButton from '../login/logoutButton';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const SideBar = () => {
-  return (
+  const {  isAuthenticated } = useAuth0();
+
+  return isAuthenticated&&(
     <>
       <div className="sidenav">
       <ul>
