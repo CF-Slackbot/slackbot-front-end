@@ -41,7 +41,7 @@ const UserList = (props) => {
     <>
       <ListGroup>
         {props.userList.map((user, index) => (
-          <ListGroup.Item key={index} action>
+          <ListGroup.Item key={index} action as="li">
             {user.email}
             <span className='delete-edit-btn'>
               <Button variant="outline-danger" className="x" onClick={() => props.deleteUser(user.user_id)}>X</Button>

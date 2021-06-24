@@ -8,22 +8,18 @@ const QuestionsList = (props) => {
   const [question, setQuestion] = useState('');
 
   const updateItem = (e) => {
-    console.log('updateItem in questions-list [question]', question);
     let selectedItem = props.questionsList.filter(
       (item) => item._id == e.target.value
     );
-    console.log("here is selectedItem <<<<<<<<===============", selectedItem);
     setQuestion(selectedItem[0]);
     context.changeModalDisplay(true);
   };
-
-  console.log('OUTSIDE FUNCTION in questions-list [question]', question);
 
   return (
     <>
       <ListGroup>
         {props.questionsList.map((item, index) => (
-          <ListGroup.Item key={index} action>
+          <ListGroup.Item key={index} action as="li">
             {item.question}
             <span className="delete-edit-btn">
               <Button variant="outline-danger" className="x" onClick={() => props.deleteQuestion(item._id)}>X</Button>
