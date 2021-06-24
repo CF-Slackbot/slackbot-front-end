@@ -12,6 +12,8 @@ const Entry = () => {
     domain="dev-d6ditd3b.us.auth0.com"
     clientId="y5ADl4RwWIFOXSHTKhJK0UYywsM1BADW"
     redirectUri={window.location.origin}
+    audience="https://dev-d6ditd3b.us.auth0.com/api/v2/"
+    scope="read:current_user update:current_user_metadata"
     >
       <App />
 
