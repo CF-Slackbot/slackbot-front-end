@@ -9,7 +9,7 @@ const Pagination = ({ postsPerPage, totalPosts, setCurrentPage }) => {
   }
 
   return(
-    <div>
+    <div className="pagination-wrapper">
       <ul className="pagination">
         {pageNumbers.map(number => (
           <li key={number} className="page-item">
