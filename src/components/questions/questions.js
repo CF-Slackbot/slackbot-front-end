@@ -1,16 +1,16 @@
-import React, { useState, useCallback, useEffect } from "react";
-import useAjax from "../../hooks/ajax.js";
-import QuestionsForm from "./questions-form";
-import QuestionsList from "./questions-list";
-import Pagination from "../pagination.js";
-import { Container, Row, Col } from "react-bootstrap";
-import axios from "axios";
+import React, { useState, useCallback, useEffect } from 'react';
+import useAjax from '../../hooks/ajax.js';
+import QuestionsForm from './questions-form';
+import QuestionsList from './questions-list';
+import Pagination from '../pagination.js';
+import { Container, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
 const Questions = () => {
-
   const [list, setList] = useState([]);
   const { setOptions, response, options } = useAjax();
-  const qAPI = "https://cf-slackbot-questions-api.herokuapp.com/api/v2/question";
+  const qAPI =
+    'https://cf-slackbot-questions-api.herokuapp.com/api/v2/question';
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(12);
@@ -18,16 +18,16 @@ const Questions = () => {
 
   const getQuestions = async () => {
     const options = {
-      method: "get",
+      method: 'get',
       url: qAPI,
     };
     setOptions(options);
-  }
+  };
 
-  const deleteQuestion = async (id) => {
-    const newlist = list.filter(question => question._id !== id)
+  const deleteQuestion = async id => {
+    const newlist = list.filter(question => question._id !== id);
     await axios({
-      method: "delete",
+      method: 'delete',
       url: `${qAPI}/${id}`,
     });
     setList(newlist);
@@ -37,32 +37,32 @@ const Questions = () => {
 
   useEffect(() => {
     if (options.method === 'get') {
-      setList(response)
+      setList(response);
     } else if (options.method === 'post' || options.method === 'put') {
-      setList([...list, response])
+      setList([...list, response]);
     }
-  }, [response])
+  }, [response]);
 
-  const addQuestion = async (val) => {
-    let tagValues = val.tags ? val.tags.replace(" ", "").split(",") : null;
+  const addQuestion = async val => {
+    let tagValues = val.tags ? val.tags.replace(' ', '').split(',') : null;
     let newTagArr = val.tag
-      ? tagValues.map((item) => {
+      ? tagValues.map(item => {
           name: item;
         })
       : null;
 
-    if (val.difficulty === "1") {
-      val.difficulty = "Easy";
-    } else if (val.difficulty === "2") {
-      val.difficulty = "Medium";
-    } else if (val.difficulty === "3") {
-      val.difficulty = "Hard";
+    if (val.difficulty === '1') {
+      val.difficulty = 'Easy';
+    } else if (val.difficulty === '2') {
+      val.difficulty = 'Medium';
+    } else if (val.difficulty === '3') {
+      val.difficulty = 'Hard';
     } else {
-      val.difficulty = "Easy";
+      val.difficulty = 'Easy';
     }
 
     const options = {
-      method: "post",
+      method: 'post',
       url: qAPI,
       data: {
         question: val.question,
@@ -88,12 +88,12 @@ const Questions = () => {
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPosts = questionsList.slice(indexOfFirstPost, indexOfLastPost);
 
-  const paginate = (pageNum) => setCurrentPage(pageNum);
+  const paginate = pageNum => setCurrentPage(pageNum);
 
   return (
     <Container fluid>
       <h1>Questions</h1>
-      <Row style={{ marginTop: "16px" }}>
+      <Row style={{ marginTop: '16px' }}>
         <Col>
           <QuestionsForm addQuestion={addQuestion} />
         </Col>
@@ -101,6 +101,7 @@ const Questions = () => {
           <QuestionsList
             questionsList={currentPosts}
             deleteQuestion={deleteQuestion}
+            getQuestions={getQuestions}
           />
           <Pagination
             postsPerPage={postPerPage}
