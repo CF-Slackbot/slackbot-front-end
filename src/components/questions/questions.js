@@ -4,12 +4,13 @@ import QuestionsForm from "./questions-form";
 import QuestionsList from "./questions-list";
 import Pagination from "../pagination.js";
 import { Container, Row, Col } from "react-bootstrap";
+import axios from "axios";
 
 const Questions = () => {
+
   const [list, setList] = useState([]);
   const { setOptions, response } = useAjax();
-  const qAPI =
-    "https://cf-slackbot-questions-api.herokuapp.com/api/v2/question";
+  const qAPI = "https://cf-slackbot-questions-api.herokuapp.com/api/v2/question";
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(12);
@@ -21,14 +22,23 @@ const Questions = () => {
       url: qAPI,
     };
     setOptions(options);
-  }, [setOptions]);
+  }, [setOptions, setList]);
+
+  // const deleteQuestion = async (id) => {
+  //   const options = {
+  //     method: "delete",
+  //     url: `${qAPI}/${id}`,
+  //   };
+  //   await setOptions(options);
+  // };
 
   const deleteQuestion = async (id) => {
-    const options = {
+    const newlist = list.filter(question => question._id !== id)
+    await axios({
       method: "delete",
       url: `${qAPI}/${id}`,
-    };
-    await setOptions(options);
+    });
+    setOptions(newlist);
   };
 
   useEffect(() => getQuestions(), [getQuestions]);
@@ -85,7 +95,6 @@ const Questions = () => {
   const currentPosts = questionsList.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNum) => setCurrentPage(pageNum);
-  // console.log('list', list);
 
   return (
     <Container fluid>

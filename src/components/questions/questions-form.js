@@ -5,7 +5,7 @@ import useForm from "../../hooks/form";
 const QuestionsForm = (props) => {
   // const [ handleSubmit, handleChange, values ] = useForm(props.addQuestion);
   const [handleSubmit, handleChange, values] = useForm(props.addQuestion);
-  const [inputFields, setInputFields] = useState([{ answerOption: "" }]);
+  const [inputFields, setInputFields] = useState([]);
   const [validated, setValidated] = useState(false);
 
   const answerLettersArr = ["A", "B", "C", "D", "E", "F"];
@@ -15,8 +15,9 @@ const QuestionsForm = (props) => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      alert('Please fill in all required* fields')
+      return;
     }
-
     setValidated(true);
     handleSubmit(event);
   };
@@ -40,31 +41,21 @@ const QuestionsForm = (props) => {
     handleChange(event);
   };
 
-  const handleTheSubmit = (event) => {
-    console.log("VALUES", values);
-    event.preventDefault();
-    if (!values.category) {
-      alert("Please select a category");
-    } else {
-      handleSubmit(event);
-    }
-  };
-
   return (
     <Card className="form-card">
       <Form onSubmit={handleSubmit2} noValidate validated={validated}>
-        <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Question</Form.Label>
+        <Form.Group controlId="exampleForm.ControlInput1" required>
+          <Form.Label>Question*</Form.Label>
           <Form.Control
             onChange={handleChange}
-            type="text"
+            as="textarea"
             placeholder="Enter a new question"
             name="question"
             required
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>Category</Form.Label>
+          <Form.Label>Category*</Form.Label>
           <Form.Control
             as="select"
             name="category"
@@ -100,12 +91,12 @@ const QuestionsForm = (props) => {
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Answer Options</Form.Label>
+          <Form.Label>Answer Options*</Form.Label>
           <Form.Control
             type="text"
             name="answer_a"
             key="answer_a"
-            placeholder="Enter a new question"
+            placeholder="Enter an anwer"
             onChange={handleChange}
             required
           />
@@ -113,7 +104,7 @@ const QuestionsForm = (props) => {
             type="text"
             name="answer_b"
             key="answer_b"
-            placeholder="Enter a new question"
+            placeholder="Enter an answer"
             onChange={handleChange}
             required
           />
@@ -128,17 +119,17 @@ const QuestionsForm = (props) => {
             }}
           >
             +
-          </Badge>
-          {inputFields.map((inputFields, index) => (
+          </Badge>      
+            {inputFields.map((inputFields, index) => (
             <>
               <Form.Control
                 type="text"
                 key={`${inputFields}~${index}`}
-                placeholder="Enter a new question"
+                placeholder="Enter an answer"
                 value={inputFields.answerOption}
                 onChange={(event) => handleInputChange(index, event)}
                 name={`answer_${answerLettersArr[index + 2].toLowerCase()}`}
-                required
+                // required
               />
               <Badge
                 // className="btn btn-link"
@@ -168,7 +159,7 @@ const QuestionsForm = (props) => {
           ))}
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect2">
-          <Form.Label>Correct Answer</Form.Label>
+          <Form.Label>Correct Answer*</Form.Label>
           <fieldset>
             <Form.Check
               type="radio"
@@ -196,7 +187,7 @@ const QuestionsForm = (props) => {
                 name="correct_answer"
                 value={`answer_${answerLettersArr[index + 2].toLowerCase()}`}
                 onChange={handleChange}
-                required
+                // required
               />
             ))}
           </fieldset>

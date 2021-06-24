@@ -67,7 +67,7 @@ const Results = () => {
   return (
     <Container fluid="md" maxWidth="sm">
       <h1>Results</h1>
-      <h3>See how Code Fellows students are preforming by category</h3>
+      <h3>See how Code Fellows students are performing by category</h3>
       <Row>
         <Col>
           <BarChart
