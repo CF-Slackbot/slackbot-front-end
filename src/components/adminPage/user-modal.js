@@ -7,7 +7,7 @@ import { SettingsContext } from '../../context/settings'
 const UserModal = (props) => {
 
   const context = useContext(SettingsContext);
-  const [ handleSubmit, handleChange, values ] = useForm(props.updateUser);
+  const [handleSubmit, handleChange, values] = useForm(props.updateUser);
 
   return (
 
@@ -18,11 +18,15 @@ const UserModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title>Update Form</Modal.Title>
+      <Modal.Header
+        className="modal-header"
+        closeButton
+        closeLabel=''
+      >
+        <Modal.Title >Update Form</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleSubmit} >
+        <Form onSubmit={handleSubmit} className='modal-form'>
           <Form.Group>
             <Form.Label>Role</Form.Label>
             <fieldset>
@@ -52,7 +56,7 @@ const UserModal = (props) => {
               />
             </fieldset>
           </Form.Group>
-          <Button type="submit">
+          <Button className="modal-submit-btn" type="submit">
             Submit
           </Button>
         </Form>
