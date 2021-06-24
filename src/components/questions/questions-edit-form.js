@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Card, Button } from 'react-bootstrap';
 // import useForm from '../../hooks/form';
 import { If, Then } from 'react-if';
 
 const QuestionsEditForm = props => {
-
   // const [inputFields, setInputFields] = useState([]);
   // const [modalFields, setModalFields] = useState(props.question);
   const [validated, setValidated] = useState(false);
-  const [values, setValues] = useState(props.question)
+  const [values, setValues] = useState(props.question);
 
   const answerLettersArr = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-  const handleChange = (e) => {
-    setValues(values => ({...values, [e.target.name]: e.target.value }));
-  }
+  const handleChange = e => {
+    setValues(values => ({ ...values, [e.target.name]: e.target.value }));
+  };
 
-  const handleSubmit = (event) => {
-    console.log("FORM HANDLE SUBMIT", event)
+  const handleSubmit = event => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      alert('Please fill in all required* fields')
+      alert('Please fill in all required* fields');
       return;
     }
     setValidated(true);
@@ -31,7 +30,7 @@ const QuestionsEditForm = props => {
   };
 
   return (
-    <Card className="form-card">
+    <Card className='form-card'>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='exampleForm.ControlInput1'>
           <Form.Label>Question</Form.Label>
@@ -86,7 +85,7 @@ const QuestionsEditForm = props => {
             key='answer_a'
             defaultValue={props.question.answers.answer_a}
             onChange={handleChange}
-            style={{marginBottom:'6px'}}
+            style={{ marginBottom: '6px' }}
             required
           />
           <Form.Control
@@ -96,7 +95,6 @@ const QuestionsEditForm = props => {
             defaultValue={props.question.answers.answer_b}
             onChange={handleChange}
             required
-            
           />
           <If condition={props.question.answers.answer_c}>
             <Form.Control
@@ -179,8 +177,8 @@ const QuestionsEditForm = props => {
                 value={`answer_${answerLettersArr[2].toLowerCase()}`}
                 onChange={handleChange}
               />
-              </If>
-              <If condition={props.question.answers.answer_d}>
+            </If>
+            <If condition={props.question.answers.answer_d}>
               <Form.Check
                 type='radio'
                 label={answerLettersArr[3]}
@@ -193,8 +191,8 @@ const QuestionsEditForm = props => {
                 value={`answer_${answerLettersArr[3].toLowerCase()}`}
                 onChange={handleChange}
               />
-              </If>
-              <If condition={props.question.answers.answer_e}>
+            </If>
+            <If condition={props.question.answers.answer_e}>
               <Form.Check
                 type='radio'
                 label={answerLettersArr[4]}
@@ -207,8 +205,8 @@ const QuestionsEditForm = props => {
                 value={`answer_${answerLettersArr[4].toLowerCase()}`}
                 onChange={handleChange}
               />
-              </If>
-              <If condition={props.question.answers.answer_f}>
+            </If>
+            <If condition={props.question.answers.answer_f}>
               <Form.Check
                 type='radio'
                 label={answerLettersArr[5]}
@@ -221,7 +219,7 @@ const QuestionsEditForm = props => {
                 value={`answer_${answerLettersArr[5].toLowerCase()}`}
                 onChange={handleChange}
               />
-              </If>
+            </If>
           </fieldset>
         </Form.Group>
         <Form.Group controlId='exampleForm.ControlTextarea1'>
