@@ -1,11 +1,10 @@
-import React, { useState, useCallback, useEffect, useContext } from 'react';
-import { SettingsContext } from '../../context/settings.js';
-import UserModal from './user-modal.js';
-import useAjax from '../../hooks/ajax.js';
+import React, { useState, useCallback, useEffect, useContext } from "react";
+import { SettingsContext } from "../../context/settings.js";
+import UserModal from "./user-modal.js";
+import useAjax from "../../hooks/ajax.js";
+import { ListGroup, Button } from "react-bootstrap";
 
-
-const UserList = props => {
-
+const UserList = (props) => {
   const { setOptions, response } = useAjax();
   const context = useContext(SettingsContext);
   const API = "https://dev-d6ditd3b.us.auth0.com/api/v2/users";
@@ -15,48 +14,47 @@ const UserList = props => {
   const handleUpdate = (user) => {
     setSelectedUser(user);
     context.changeModalDisplay(true);
-  }
+  };
   const updateUser = async (user) => {
     try {
       const options = {
-        method: 'patch',
+        method: "patch",
         url: `${API}/${selectedUser.user_id}`,
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
         },
         data: {
           user_metadata: {
-            role: user.role
-          }
-        }
-      }
-      setOptions(options)
+            role: user.role,
+          },
+        },
+      };
+      setOptions(options);
       context.changeModalDisplay(false);
     } catch (e) {
-      console.error(e.message)
+      console.error(e.message);
     }
-  } 
- 
+  };
+
   return (
     <>
-      <ul>
+      <ListGroup>
         {props.userList.map((user, index) => (
-          <li key={index}>
+          <ListGroup.Item key={index} action>
             {user.email}
-            <button onClick={() => props.deleteUser(user.user_id)}>X</button>
-            <button onClick={() => handleUpdate(user, user.user_id)}>edit</button>
-          </li>
+            <span className='delete-edit-btn'>
+              <Button variant="outline-danger" onClick={() => props.deleteUser(user.user_id)}>X</Button>{' '}
+              <Button variant="outline-success" onClick={() => handleUpdate(user, user.user_id)}>
+                edit
+              </Button>
+            </span>
+          </ListGroup.Item>
         ))}
-        <UserModal 
-        updateUser={updateUser} 
-        selectedUser={selectedUser}
-        />
-      </ul>
-
+        <UserModal updateUser={updateUser} selectedUser={selectedUser} />
+      </ListGroup>
     </>
-  )
-
-}
+  );
+};
 
 export default UserList;

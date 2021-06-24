@@ -4,6 +4,7 @@ import AdminForm from './admin-form';
 import Pagination from '../pagination.js';
 import UserList from './user-list.js';
 import axios from 'axios';
+import {Container, Row, Col} from 'react-bootstrap'
 
 const Admin = () => {
 
@@ -90,9 +91,13 @@ const Admin = () => {
   // console.log('list', list);
 
   return (
-    <>
+    <Container fluid>
       <h1>Admin Portal</h1>
+      <Row style= {{marginTop:'16px'}}>
+        <Col >
       <AdminForm addUser={_addUser} />
+        </Col>
+        <Col xs={8}>
       <UserList
         userList={currentPosts}
         deleteUser={deleteUser}
@@ -103,7 +108,10 @@ const Admin = () => {
         totalPosts={usersList.length}
         setCurrentPage={paginate}
       />
-    </>
+        </Col>
+
+      </Row>
+    </Container>
   )
 }
 
