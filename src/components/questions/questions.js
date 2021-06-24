@@ -9,28 +9,20 @@ import axios from "axios";
 const Questions = () => {
 
   const [list, setList] = useState([]);
-  const { setOptions, response } = useAjax();
+  const { setOptions, response, options } = useAjax();
   const qAPI = "https://cf-slackbot-questions-api.herokuapp.com/api/v2/question";
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(12);
   const questionsList = Array.from(list);
 
-  const getQuestions = useCallback(async () => {
+  const getQuestions = async () => {
     const options = {
       method: "get",
       url: qAPI,
     };
     setOptions(options);
-  }, [setOptions, setList]);
-
-  // const deleteQuestion = async (id) => {
-  //   const options = {
-  //     method: "delete",
-  //     url: `${qAPI}/${id}`,
-  //   };
-  //   await setOptions(options);
-  // };
+  }
 
   const deleteQuestion = async (id) => {
     const newlist = list.filter(question => question._id !== id)
@@ -38,16 +30,18 @@ const Questions = () => {
       method: "delete",
       url: `${qAPI}/${id}`,
     });
-    setOptions(newlist);
+    setList(newlist);
   };
 
-  useEffect(() => getQuestions(), [getQuestions]);
+  useEffect(getQuestions, []);
 
   useEffect(() => {
-    if (response) {
-      response && setList(response);
+    if (options.method === 'get') {
+      setList(response)
+    } else if (options.method === 'post' || options.method === 'put') {
+      setList([...list, response])
     }
-  }, [response, getQuestions, setList, questionsList]);
+  }, [response])
 
   const addQuestion = async (val) => {
     let tagValues = val.tags ? val.tags.replace(" ", "").split(",") : null;
