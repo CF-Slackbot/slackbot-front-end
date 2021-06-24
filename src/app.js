@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import  SettingsContext  from "./context/settings";
+import SettingsContext from "./context/settings";
 import { withAuth0, useAuth0 } from "@auth0/auth0-react";
 import Dashboard from "./components/dashboard/dashboard.js";
 import Login from "./components/login/login.js";
@@ -10,7 +10,7 @@ import Guide from "./components/guide/guide.js";
 import Results from "./components/results/results.js";
 import Admin from "./components/adminPage/admin.js";
 import AboutUs from "./components/aboutUs/about";
-import { Roller } from "react-awesome-spinners";
+import { Spinner } from "react-bootstrap";
 
 const App = (props) => {
   const { user } = useAuth0();
@@ -31,7 +31,11 @@ const App = (props) => {
               <Results />
             </Route>
             <Route exact path="/admin">
-              {props.auth0.isAuthenticated ? <Admin user={user} /> : <Roller />}
+              {props.auth0.isAuthenticated ? (
+                <Admin user={user} />
+              ) : (
+                <Spinner animation="border" />
+              )}
             </Route>
             <Route exact path="/guide">
               {props.auth0.isAuthenticated ? <Guide /> : <Login />}

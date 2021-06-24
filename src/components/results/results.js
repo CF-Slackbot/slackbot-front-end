@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import useAjax from "../../hooks/ajax.js";
 import BarChart from "./results-graph.js";
 import ResultTable from "./results-table.js";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Roller } from "react-awesome-spinners";
 
 const Results = () => {
   const {  isAuthenticated, isLoading } = useAuth0();
@@ -67,9 +66,9 @@ const Results = () => {
   let inCorrectHtmlQ = incorrectQ(resultData, "HTML");
   let jsQ = findQNum(resultData, "JavaScript");
   let inCorrectJsQ = incorrectQ(resultData, "JavaScript");
-  
+
   if(isLoading){
-    return <Roller/>
+    return <Spinner animation="border" />
   }
   return isAuthenticated&& (
     <Container fluid="md" maxwidth="sm">

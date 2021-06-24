@@ -5,9 +5,8 @@ import AdminForm from './admin-form';
 import Pagination from '../pagination.js';
 import UserList from './user-list.js';
 import axios from 'axios';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Spinner} from 'react-bootstrap';
 import { If } from 'react-if';
-import { Roller } from "react-awesome-spinners";
 
 const Admin = (props) => {
   const {  isAuthenticated, isLoading } = useAuth0();
@@ -106,7 +105,7 @@ const Admin = (props) => {
   
   const paginate = (pageNum) => setCurrentPage(pageNum);
   if(isLoading){
-    return <Roller/>
+    return <Spinner animation="border" />
   }
   return isAuthenticated&& (
     <Container fluid>

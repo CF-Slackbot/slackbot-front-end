@@ -3,13 +3,11 @@ import useAjax from "../../hooks/ajax.js";
 import QuestionsForm from "./questions-form";
 import QuestionsList from "./questions-list";
 import Pagination from "../pagination.js";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Roller } from "react-awesome-spinners";
 
 const Questions = () => {
-
   const { isAuthenticated, isLoading } = useAuth0();
   const [list, setList] = useState([]);
   const { setOptions, response, options } = useAjax();
@@ -94,11 +92,7 @@ const Questions = () => {
 
   const paginate = (pageNum) => setCurrentPage(pageNum);
   if (isLoading) {
-    return (
-      <div style={{ margin: "auto" }}>
-        <Roller />
-      </div>
-    );
+    return <Spinner animation="border" />
   }
   return (
     isAuthenticated && (
