@@ -182,7 +182,7 @@ const QuestionsEditForm = props => {
               <Form.Check
                 type='radio'
                 label={answerLettersArr[3]}
-                key='C'
+                key='D'
                 name='correct_answer'
                 checked={
                   props.question.correct_answer ===
@@ -196,7 +196,7 @@ const QuestionsEditForm = props => {
               <Form.Check
                 type='radio'
                 label={answerLettersArr[4]}
-                key='C'
+                key='E'
                 name='correct_answer'
                 checked={
                   props.question.correct_answer ===
@@ -210,7 +210,7 @@ const QuestionsEditForm = props => {
               <Form.Check
                 type='radio'
                 label={answerLettersArr[5]}
-                key='C'
+                key='F'
                 name='correct_answer'
                 checked={
                   props.question.correct_answer ===
