@@ -229,3 +229,30 @@
   height: 30px;
 }
 
+// =====USER MODAL=====
+.modal-header {
+  font-family: $font-secondary;
+  font-size: 30px;
+  background-color: $blue;
+
+  button.close {
+    border: none;
+    background-color: $blue;
+  }
+}
+
+.modal-form {
+  font-family: $font-secondary;
+
+  label.form-label {
+    font-size: 18px;
+    padding-bottom: 10px;
+  }
+}
+
+.modal-submit-btn {
+  margin-top: 10px;
+  background-color: white;
+  border-color: $purple;
+  color: $black;
+}
