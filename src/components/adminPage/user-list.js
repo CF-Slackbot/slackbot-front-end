@@ -1,11 +1,11 @@
-import React, { useState, useCallback, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { SettingsContext } from "../../context/settings.js";
 import UserModal from "./user-modal.js";
 import useAjax from "../../hooks/ajax.js";
 import { ListGroup, Button } from "react-bootstrap";
 
 const UserList = (props) => {
-  const { setOptions, response } = useAjax();
+  const { setOptions } = useAjax();
   const context = useContext(SettingsContext);
   const API = "https://dev-d6ditd3b.us.auth0.com/api/v2/users";
 
@@ -55,6 +55,7 @@ const UserList = (props) => {
       </ListGroup>
     </>
   );
-};
+
+}
 
 export default UserList;

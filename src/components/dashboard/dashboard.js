@@ -42,7 +42,8 @@ const Dashboard = () => {
         </NavLink>
       </div>    
     </section>
-  )
+  );
+  
 }
 
 export default Dashboard;

@@ -290,11 +290,11 @@
   font-family: $font-secondary;
   font-size: 30px;
   background-color: $blue;
+}
 
-  button.close {
-    border: none;
-    background-color: $blue;
-  }
+button.close {
+  border: none;
+  background-color: $blue;
 }
 
 .modal-form {

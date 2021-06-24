@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 const useForm = (callback) => {
 
   const [values, setValues] = useState({})
 
   const handleSubmit = (e) => {
-    console.log("FORM HANDLE SUBMIT", e)
     e.preventDefault();
     callback(values);
     e.target.reset();
@@ -23,4 +22,4 @@ const useForm = (callback) => {
 
 }
 
-export default useForm; 
+export default useForm;

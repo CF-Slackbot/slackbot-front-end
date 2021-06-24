@@ -24,7 +24,6 @@ const AdminForm = (props) => {
         <Form onSubmit={handleSubmit2} noValidate validated={validated}>
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Email*</Form.Label>
-            {/* <Form.Control onChange={handleChange} type="email" placeholder="Enter user email" name="email" required isInvalid/> */}
             <Form.Control
               onChange={handleChange}
               type="email"
@@ -35,7 +34,6 @@ const AdminForm = (props) => {
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput2">
             <Form.Label>Temp Password*</Form.Label>
-            {/* <Form.Control onChange={handleChange} type="password" placeholder="Enter temporary password" name="password" required isInvalid/> */}
             <Form.Control
               onChange={handleChange}
               type="password"
@@ -83,6 +81,7 @@ const AdminForm = (props) => {
       </Card.Body>
     </Card>
   );
-};
+
+}
 
 export default AdminForm;
