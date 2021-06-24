@@ -39,14 +39,28 @@ const QuestionsModal = props => {
       data: {
         question: val.question,
         answers: {
-          answer_a: val.answer_a,
-          answer_b: val.answer_b,
-          answer_c: val.answer_c ? val.answer_c : null,
-          answer_d: val.answer_d ? val.answer_d : null,
-          answer_e: val.answer_e ? val.answer_e : null,
-          answer_f: val.answer_f ? val.answer_f : null,
+          answer_a: val.answer_a
+            ? val.answer_a
+            : props.question.answers.answer_a,
+          answer_b: val.answer_b
+            ? val.answer_b
+            : props.question.answers.answer_b,
+          answer_c: val.answer_c
+            ? val.answer_c
+            : props.question.answers.answer_c,
+          answer_d: val.answer_d
+            ? val.answer_d
+            : props.question.answers.answer_d,
+          answer_e: val.answer_e
+            ? val.answer_e
+            : props.question.answers.answer_e,
+          answer_f: val.answer_f
+            ? val.answer_f
+            : props.question.answers.answer_f,
         },
-        correct_answer: val.correct_answer,
+        correct_answer: val.correct_answer
+          ? val.correct_answer
+          : props.question.correct_answer,
         tags: newTagArr,
         category: val.category,
         difficulty: val.difficulty,
