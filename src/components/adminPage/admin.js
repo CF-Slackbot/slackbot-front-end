@@ -1,22 +1,26 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { withAuth0, useAuth0 } from "@auth0/auth0-react";
 import useAjax from '../../hooks/ajax'
 import AdminForm from './admin-form';
 import Pagination from '../pagination.js';
 import UserList from './user-list.js';
 import axios from 'axios';
-import {Container, Row, Col} from 'react-bootstrap'
+import {Container, Row, Col} from 'react-bootstrap';
+import { If, Then, Else } from 'react-if';
 
-const Admin = () => {
+const Admin = (props) => {
 
   const [userList, setUserList] = useState([]);
   const { setOptions, response, options } = useAjax();
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(10);
   const usersList = Array.from(userList);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   const API = "https://dev-d6ditd3b.us.auth0.com/api/v2/users";
   const uAPI = process.env.REACT_APP_USER_URL;
 
+ 
   const _getUsers = async () => {
     try {
       setOptions({
@@ -31,7 +35,7 @@ const Admin = () => {
       console.error(e.message);
     }
   }
-
+  
   useEffect(() => {
     console.log('options', options);
     if (options.method === 'get') {
@@ -40,11 +44,11 @@ const Admin = () => {
       setUserList([...userList, response])
     }
   }, [response])
-
+  
   useEffect(_getUsers, []);
-
+  
   console.log('user list', userList);
-
+  
   const _addUser = async (user) => {
     try {
       setOptions({
@@ -67,8 +71,8 @@ const Admin = () => {
       console.error(e.message);
     }
   }
-
-
+  
+  
   const deleteUser = async (id) => {
     const newUsers = userList.filter(user => user.user_id !== id);
     await axios({
@@ -82,17 +86,33 @@ const Admin = () => {
     setUserList(newUsers);
   };
 
+  const getLoggedInUser = async (userId) => {
+    
+    let thisUser = await axios({
+      method: 'get',
+      url: `${API}/${userId}`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_TOKEN}`
+      }
+    });
+    setLoggedInUser(thisUser);
+  }
+
+  useEffect(()=> getLoggedInUser(props.user.sub), []);
+  console.log('logged in', loggedInUser);
+  
   // for Pagination
   const indexOfLastPost = currentPage * postPerPage
   const indexOfFirstPost = indexOfLastPost - postPerPage
   const currentPosts = usersList.slice(indexOfFirstPost, indexOfLastPost)
-
+  
   const paginate = (pageNum) => setCurrentPage(pageNum)
-  // console.log('list', list);
 
   return (
     <Container fluid>
       <h1>Admin Portal</h1>
+    <If condition={loggedInUser ? loggedInUser.data.user_metadata.role === 'admin' : false}>
       <Row style= {{marginTop:'16px'}}>
         <Col >
       <AdminForm addUser={_addUser} />
@@ -111,6 +131,10 @@ const Admin = () => {
         </Col>
 
       </Row>
+      <Else>
+        <h2>No go!</h2>
+      </Else>
+    </If>
     </Container>
   )
 }
