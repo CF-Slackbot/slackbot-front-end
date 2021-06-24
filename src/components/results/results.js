@@ -65,7 +65,7 @@ const Results = () => {
   let inCorrectJsQ = incorrectQ(resultData, "JavaScript");
 
   return (
-    <Container fluid="md" maxWidth="sm">
+    <Container fluid="md" maxwidth="sm">
       <h1>Results</h1>
       <h3>See how Code Fellows students are performing by category</h3>
       <Row>

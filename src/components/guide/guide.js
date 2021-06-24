@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 
 const Guide = () => {
   return (
-    <Container fluid="md" maxWidth="sm">
+    <Container fluid="md" maxwidth="sm">
       <h1>Guide: How to Use </h1>
       <section className="guide-wrapper">
         <div>
@@ -34,7 +34,8 @@ const Guide = () => {
         </div>
       </section>
     </Container>
-  )
+  );
+
 }
 
 export default Guide;

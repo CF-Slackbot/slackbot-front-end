@@ -10,18 +10,15 @@ const useAjax = () => {
 
   useEffect(() => {
     async function ajax() {
-      console.log("useAjax options:", options)  
       if (Object.keys(options).length === 0) { 
         return; 
       }
       setIsLoading(true);
       try {
         const res = await axios(options);
-        console.log("useAjax response:", res)
         setResponse(res.data);
         setIsLoading(false);
       } catch (error) {
-        console.error("useAjax error:", error)
         setError(error);
       }
     }

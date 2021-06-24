@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 
 const About = () => {
   return (
-    <Container fluid="md" maxWidth="sm">
+    <Container fluid="md" maxwidth="sm">
       <h1>About Us</h1>
       <h2>Hover or click each image to learn more about the authors</h2>
       <section className="about-us-wrapper">
@@ -65,7 +65,8 @@ const About = () => {
         </div>
       </section>
     </Container>
-  )
+  );
+
 }
 
 export default About;

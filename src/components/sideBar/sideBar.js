@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import dashboard from '../../assets/dashboard.png'
-import questions from '../../assets/questions.png'
-import help from '../../assets/help.png'
-import results from '../../assets/results.png'
-import admin from '../../assets/admin.png'
-import about from '../../assets/about-us.png'
-import logout from '../../assets/logout.png'
-import LogoutButton from '../login/logoutButton'
+import { NavLink } from 'react-router-dom';
+import dashboard from '../../assets/dashboard.png';
+import questions from '../../assets/questions.png';
+import help from '../../assets/help.png';
+import results from '../../assets/results.png';
+import admin from '../../assets/admin.png';
+import about from '../../assets/about-us.png';
+import logout from '../../assets/logout.png';
+import LogoutButton from '../login/logoutButton';
 
 
 const SideBar = () => {
@@ -46,7 +46,7 @@ const SideBar = () => {
       </ul>
       </div>
     </>
-  )
+  );
 }
 
 export default SideBar;
