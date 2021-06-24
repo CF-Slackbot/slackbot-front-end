@@ -4,11 +4,9 @@ import { Form, Card, Button } from 'react-bootstrap';
 import { If, Then } from 'react-if';
 
 const QuestionsEditForm = props => {
-  // const [ handleSubmit, handleChange, values ] = useForm(props.addQuestion);
-  // const [handleSubmit, handleChange, values] = useForm(props.updateQuestion);
-  // const [inputFields, setInputFields] = useState({});
-  const [inputFields, setInputFields] = useState([]);
-  const [modalFields, setModalFields] = useState(props.question);
+
+  // const [inputFields, setInputFields] = useState([]);
+  // const [modalFields, setModalFields] = useState(props.question);
   const [validated, setValidated] = useState(false);
   const [values, setValues] = useState(props.question)
 
@@ -33,7 +31,7 @@ const QuestionsEditForm = props => {
   };
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className="form-card">
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='exampleForm.ControlInput1'>
           <Form.Label>Question</Form.Label>
@@ -43,7 +41,6 @@ const QuestionsEditForm = props => {
             defaultValue={props.question.question}
             name='question'
             required
-            isInvalid
           />
         </Form.Group>
         <Form.Group controlId='exampleForm.ControlSelect1'>
@@ -53,7 +50,6 @@ const QuestionsEditForm = props => {
             name='category'
             onChange={handleChange}
             required
-            isInvalid
             defaultValue={props.question.category}
           >
             <option key='blankChoice' hidden value>
@@ -90,8 +86,8 @@ const QuestionsEditForm = props => {
             key='answer_a'
             defaultValue={props.question.answers.answer_a}
             onChange={handleChange}
+            style={{marginBottom:'6px'}}
             required
-            isInvalid
           />
           <Form.Control
             type='text'
@@ -100,7 +96,7 @@ const QuestionsEditForm = props => {
             defaultValue={props.question.answers.answer_b}
             onChange={handleChange}
             required
-            isInvalid
+            
           />
           <If condition={props.question.answers.answer_c}>
             <Form.Control
@@ -110,7 +106,6 @@ const QuestionsEditForm = props => {
               defaultValue={props.question.answers.answer_c}
               onChange={handleChange}
               required
-              isInvalid
             />
           </If>
           <If condition={props.question.answers.answer_d}>
@@ -121,7 +116,6 @@ const QuestionsEditForm = props => {
               defaultValue={props.question.answers.answer_d}
               onChange={handleChange}
               required
-              isInvalid
             />
           </If>
           <If condition={props.question.answers.answer_e}>
@@ -132,7 +126,6 @@ const QuestionsEditForm = props => {
               defaultValue={props.question.answers.answer_e}
               onChange={handleChange}
               required
-              isInvalid
             />
           </If>
           <If condition={props.question.answers.answer_f}>
@@ -143,7 +136,6 @@ const QuestionsEditForm = props => {
               defaultValue={props.question.answers.answer_f}
               onChange={handleChange}
               required
-              isInvalid
             />
           </If>
         </Form.Group>
