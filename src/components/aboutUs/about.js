@@ -1,8 +1,15 @@
 import React from 'react';
 import { Container } from "react-bootstrap";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Roller } from "react-awesome-spinners";
 
 const About = () => {
-  return (
+  const {  isAuthenticated, isLoading } = useAuth0();
+  if(isLoading){
+    return <Roller/>
+  }
+
+  return isAuthenticated&&(
     <Container fluid="md" maxwidth="sm">
       <h1>About Us</h1>
       <h2>Hover or click each image to learn more about the authors</h2>
