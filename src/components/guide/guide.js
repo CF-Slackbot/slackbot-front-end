@@ -1,8 +1,9 @@
 import React from 'react';
+import { Container } from "react-bootstrap";
 
 const Guide = () => {
   return (
-    <>
+    <Container fluid="md" maxWidth="sm">
       <h1>Guide: How to Use </h1>
       <section className="guide-wrapper">
         <div>
@@ -32,7 +33,7 @@ const Guide = () => {
           <section className="guide-right"></section>
         </div>
       </section>
-    </>
+    </Container>
   )
 }
 
