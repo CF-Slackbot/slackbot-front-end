@@ -14,26 +14,14 @@ const QuestionsModal = props => {
     'https://cf-slackbot-questions-api.herokuapp.com/api/v2/question';
 
   const updateQuestion = async val => {
-    console.log('WHAT IS ON val.tags?', val.tags);
-    let tagValues;
-    let newTagArr = [];
-    if (val.tags == '' || !val.tags) newTagArr = [];
-    else if (val.tags.includes(' ') && val.tags.includes(','))
-      newTagArr = val.tags
-        .replace(' ', '')
-        .split(',')
-        .map(item => {
-          return {
-            name: item,
-          };
-        });
-    else if (val.tags.length > 0) newTagArr = val.tags;
-    // newTagArr = val.tags
-    //   ? tagValues.map(item => {
-    //       return { name: item };
-    //     })
-    //   : props.question.tags;
-    console.log('WHAT IS ON tagValues, newTagArr?', tagValues, newTagArr);
+    console.log('WHAT IS ON VAL?', val);
+    let tagValues = val.tags ? val.tags.replace(' ', '').split(',') : null;
+    let newTagArr = val.tags
+      ? tagValues.map(item => {
+          return { tagName: item };
+        })
+      : null;
+    console.log('WHAT IS newTagArr, tagValues?', newTagArr, tagValues);
 
     if (val.difficulty === '1') {
       val.difficulty = 'Easy';
@@ -74,7 +62,7 @@ const QuestionsModal = props => {
         correct_answer: val.correct_answer
           ? val.correct_answer
           : props.question.correct_answer,
-        tags: newTagArr ? newTagArr : props.question.tags,
+        tags: val.tags ? val.tags : props.question.tags,
         category: val.category,
         difficulty: val.difficulty,
       },

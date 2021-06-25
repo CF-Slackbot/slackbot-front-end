@@ -9,6 +9,16 @@ const QuestionsEditForm = props => {
   const [validated, setValidated] = useState(false);
   const [values, setValues] = useState(props.question);
 
+  let modalDifficulty =
+    ['Easy', 'Medium', 'Hard'].indexOf(
+      props.question ? props.question.difficulty : 0
+    ) + 1;
+  console.log('here is the difficulty =====>>>>>>>', modalDifficulty);
+  console.log(
+    'here is the difficulty =====>>>>>>>',
+    values.difficulty ? values.difficulty : values
+  );
+
   const answerLettersArr = ['A', 'B', 'C', 'D', 'E', 'F'];
 
   const handleChange = e => {
@@ -74,7 +84,7 @@ const QuestionsEditForm = props => {
             max='3'
             name='difficulty'
             onChange={handleChange}
-            defaultValue={props.question.difficulty}
+            defaultValue={modalDifficulty}
           />
         </Form.Group>
         <Form.Group controlId='exampleForm.ControlInput2'>
@@ -228,6 +238,11 @@ const QuestionsEditForm = props => {
             as='textarea'
             rows={3}
             name='tags'
+            defaultValue={
+              props.question.tags
+                ? props.question.tags.map(item => item.name)
+                : ''
+            }
             onChange={handleChange}
             placeholder='separate your tags with commas'
           />
