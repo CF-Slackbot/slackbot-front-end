@@ -25,7 +25,7 @@ const Guide = () => {
           <section className="guide-left yellow">
             <h2 style={{ marginBottom: "2vh" }}>Questions API</h2>
             <p style={{ textAlign: "justify", margin: "1vw" }}>No authentication is required to access this API, and all resources are fully open and available.</p>
-            <p style={{ textAlign: "justify", margin: "2vw", textDecoration: "underline" }}>"https://cf-slackbot-questions-api.herokuapp.com/api/v2/question"</p>
+            <p style={{ textAlign: "justify", margin: "1vw", textDecoration: "underline" }}>"https://cf-slackbot-questions-api.herokuapp.com/api/v2/question"</p>
             <p style={{ margin: "1vw" }}><span style={{ textDecoration: "underline", fontWeight: "bold" }}>GET:</span> "/question"</p>
             <p style={{ margin: "1vw" }}><span style={{ textDecoration: "underline", fontWeight: "bold" }}>GET/ID:</span> "/question/id"</p>
             <p style={{ margin: "1vw" }}><span style={{ textDecoration: "underline", fontWeight: "bold" }}>POST:</span> "/question"</p>
@@ -57,7 +57,7 @@ body:{
           <section className="guide-left green">
             <h2 style={{ marginBottom: "2vh" }}>Results</h2>
             <p style={{ textAlign: "justify", padding: "1vw" }}>Results are stored in a MongoDB and can be pulled from the following API:</p>
-            <p style={{ textAlign: "justify", margin: "2vw", textDecoration: "underline" }}>"https://cf-slackbot-questions-api.herokuapp.com/api/v2/result"</p>
+            <p style={{ textAlign: "justify", margin: "1vw", textDecoration: "underline" }}>"https://cf-slackbot-questions-api.herokuapp.com/api/v2/result"</p>
             <p style={{ textAlign: "justify", padding: "1vw" }}>Chart renders data of the correct and incorrect answers by each category. This will allow Code Fellows staff members to see how students are performing by topic.</p>
           </section>
           <section className="guide-right">
