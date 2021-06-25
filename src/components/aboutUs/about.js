@@ -71,7 +71,7 @@ const About = () => {
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat. Tortor vitae purus faucibus ornare suspendisse sed. Sagittis nisl rhoncus mattis rhoncus. Duis convallis convallis tellus id interdum. Facilisis gravida neque convallis a cras semper. Justo donec enim diam vulputate ut pharetra. Arcu felis bibendum ut tristique. Nec feugiat nisl pretium fusce id velit ut tortor. Lacus sed viverra tellus in hac. Tellus mauris a diam maecenas sed enim ut sem. Placerat orci nulla pellentesque dignissim enim sit amet. Porttitor rhoncus dolor purus non enim. Neque sodales ut etiam sit amet nisl purus in mollis. Pellentesque habitant morbi tristique senectus et.</p>
                 </div>
               <div className="connect">
-                <a href="hhttps://github.com/fizzo999" alt="fizzon github" target="_blank" rel="noopener noreferrer"><img className="social-icon"src={github}/></a>                
+                <a href="https://github.com/fizzo999" alt="fizzon github" target="_blank" rel="noopener noreferrer"><img className="social-icon"src={github}/></a>                
                 <a href="https://www.linkedin.com/in/fizzopannosch/" alt="fizzo linkedIn" target="_blank" rel="noopener noreferrer"><img className="social-icon"src={linkedin}/></a>
               </div>
             </div>

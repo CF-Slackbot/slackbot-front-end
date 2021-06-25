@@ -98,6 +98,7 @@ const Questions = () => {
     isAuthenticated && (
       <Container fluid>
         <h1>Questions</h1>
+        <h3>Modify questions in the Slack Bot database</h3>
         <Row style={{ marginTop: "16px" }}>
           <Col>
             <QuestionsForm addQuestion={addQuestion} />
