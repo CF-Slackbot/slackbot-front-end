@@ -299,12 +299,12 @@
 }
 .about-card .back {
   transform: rotateY(180deg);
-  // background: linear-gradient($purple, $blue);
+  // background: linear-gradient($purple, $yellow);
   background: linear-gradient($purple, khaki);
   color: white;
   padding: 10px;
   position: relative;
-  font-size: 32px;
+  font-size: 18px;
   line-height: 24px;
   text-align: justify;
 }
@@ -313,28 +313,19 @@
   text-align: center;
 }
 
-// .back {
-//   padding: 10px;
-//   position: relative;
-//   line-height: 24px;
-//   text-align: justify;
-// }
-
 .connect {
   position: absolute;
   bottom: 10px;
   left: 120px;
+}
 
-  // display: flex;
-  // justify-content: space-evenly;
-  // align-items: flex-end;
-  // margin-top: 0px;
+img.social-icon {
+  transition: all 250ms;
 }
 
 img.social-icon:hover {
-  // border: 3px solid white;
-  box-shadow: 0 0 55px 25px #f2ff044f;
-  // border: solid 3px #f2ff044f;
+  box-shadow: 0 0 55px 25px $yellow;
+  border: solid 3px $yellow;
   border-radius: 50%;
   opacity: 0.8;
 }
