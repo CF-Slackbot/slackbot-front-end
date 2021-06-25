@@ -110,6 +110,7 @@ const Admin = (props) => {
   return isAuthenticated&& (
     <Container fluid>
       <h1>Admin Portal</h1>
+      <h3>Create new user accounts and assign roles</h3>
     <If condition={loggedInUser ? loggedInUser.data.user_metadata.role === 'admin' : false}>
       <Row style= {{marginTop:'16px'}}>
         <Col >

@@ -7,9 +7,20 @@
     padding: 1.2vh;
   }
 }
+
 .sliderInModal {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+}
+
+.form-label{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+//====== FORM BUTTON ======
+.x{
+    margin-right: 5px;
 }

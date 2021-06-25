@@ -181,18 +181,20 @@
     vertical-align: text-top;
     overflow: scroll;
   }
-  p {
+
+  p{
     padding: 10px;
     font-size: 18px;
   }
-  .guide-left {
+  .guide-left{
     width: 53%;
   }
-  .guide-right {
+  .guide-right{
     width: 43%;
-    background-color: rgb(39, 40, 34);
+    background-color: rgb(39,40,34);
     color: whitesmoke;
   }
+  
   .red {
     background-color: $red;
   }
@@ -208,25 +210,27 @@
   .purple {
     background-color: $purple;
   }
-  pre {
+
+  pre{
     font-family: $font-secondary;
   }
-  .accent {
+  .accent{
     font-family: $font-secondary;
-    color: rgb(156, 211, 45);
+    color:rgb(156,211,45);
     font-size: 18px;
   }
-  .accent2 {
+  .accent2{
     font-family: $font-secondary;
     font-size: 18px;
   }
-  .accent3 {
+  .accent3{
     font-weight: bold;
   }
-  a {
-    color: $black;
+  a{
+    color: $black
   }
 }
+
 
 // =====ABOUT US CARD FLIP=====
 .about-us-wrapper {
