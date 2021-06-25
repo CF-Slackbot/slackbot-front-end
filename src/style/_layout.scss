@@ -8,7 +8,7 @@
   left: 0;
   background-color: rgb(66, 66, 66);
   overflow-x: hidden;
-  li{
+  li {
     padding: 30px 10px 30px 10px;
     border-bottom: white 1px solid;
     font-size: 20px;
@@ -19,12 +19,12 @@
       padding-left: 10px;
     }
   }
-  li:hover{
+  li:hover {
     background-color: $blue;
     transition: 350ms;
-      .navlink{
-        color: $black;
-      }
+    .navlink {
+      color: $black;
+    }
   }
   .icons {
     height: 50px;
@@ -32,8 +32,8 @@
 }
 
 // =====DASHBOARD=====
-.dashboard{
-  section{
+.dashboard {
+  section {
     margin: 1% 0px 0px 1%;
     display: inline-block;
     border-radius: 10px;
@@ -42,65 +42,65 @@
     vertical-align: text-top;
   }
   // -----DASHBOARD BACKGROUND IMAGES FOR HOVER-----
-  .guide:hover{
-    background-image:url("../assets/robot-banner.jpeg");
+  .guide:hover {
+    background-image: url('../assets/robot-banner.jpeg');
     background-size: cover;
     background-position: center;
     background-origin: content-box;
     transition: all 500ms;
-    h2{
+    h2 {
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 5px;
       padding: 2px;
       display: inline-block;
     }
   }
-  .results:hover{
-    background-image:url("../assets/results-banner.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;   
-    transition: all 500ms;
-    h2{
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 5px;
-      padding: 2px;
-      display: inline-block;
-    }
-  }
-  .questions:hover{
-    background-image:url("../assets/questions1.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;   
-    transition: all 500ms;
-    h2{
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 5px;
-      padding: 2px;
-      display: inline-block;
-    }
-  }
-  .admin:hover{
-    background-image:url("../assets/admin-banner.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;   
-    transition: all 500ms;
-    h2{
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 5px;
-      padding: 2px;
-      display: inline-block;
-    }
-  }
-  .about:hover{
-    background-image:url("../assets/us.jpeg");
+  .results:hover {
+    background-image: url('../assets/results-banner.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     transition: all 500ms;
-    h2{
+    h2 {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      padding: 2px;
+      display: inline-block;
+    }
+  }
+  .questions:hover {
+    background-image: url('../assets/questions1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 500ms;
+    h2 {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      padding: 2px;
+      display: inline-block;
+    }
+  }
+  .admin:hover {
+    background-image: url('../assets/admin-banner.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 500ms;
+    h2 {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      padding: 2px;
+      display: inline-block;
+    }
+  }
+  .about:hover {
+    background-image: url('../assets/us.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 500ms;
+    h2 {
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 5px;
       padding: 2px;
@@ -109,134 +109,158 @@
   }
   // -----DASHBOARD CARD TYPES-----
   // SMALL
-  .dash-s{
-    background-color: rgb(155,190,255);
+  .dash-s {
+    background-color: rgb(155, 190, 255);
     width: 38%;
-  }     
-  .dash-s:hover{
+  }
+  .dash-s:hover {
     opacity: 0.7;
     transition: 1000ms;
   }
   // MEDIUM
-  .dash-m{
-    background-color: rgb(165,220,105);
+  .dash-m {
+    background-color: rgb(165, 220, 105);
     width: 58%;
   }
-  .dash-m:hover{
+  .dash-m:hover {
     opacity: 0.7;
     transition: 1000ms;
   }
   // LARGE
-  .dash-lg{
-    background-color: rgb(120,210,250);
+  .dash-lg {
+    background-color: rgb(120, 210, 250);
     width: 97%;
   }
-  .dash-lg:hover{
+  .dash-lg:hover {
     opacity: 0.7;
     transition: 1000ms;
-  } 
-  .navlink{
+  }
+  .navlink {
     text-decoration: none;
     color: rgb(66, 66, 66);
-  }  
-  .navlink:hover{
+  }
+  .navlink:hover {
     transition: 350ms;
     font-style: italic;
     color: $black;
-  }  
+  }
 }
 
 // =====LOGOUT BUTTON=====
-.logout-btn{
+.logout-btn {
   border: none;
   background: none;
-	color: rgb(228, 228, 228);
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
+  color: rgb(228, 228, 228);
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
   outline: inherit;
   margin-left: 12px;
 }
-.logout-btn:hover{
+.logout-btn:hover {
   border: none;
   background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
   outline: inherit;
   margin-left: 12px;
 }
 
 // =====GUIDE=====
-.guide-wrapper{
-  section{
+.guide-wrapper {
+  section {
     margin: 1% 0px 0px 1%;
     display: inline-block;
     border-radius: 10px;
     padding: 10px;
     height: 300px;
     vertical-align: text-top;
+    overflow: scroll;
   }
-  .guide-left{
-    width: 63%;
+  p {
+    padding: 10px;
+    font-size: 18px;
   }
-  .guide-right{
-    width: 33%;
-    background-color: grey;
+  .guide-left {
+    width: 53%;
   }
-  .red{
+  .guide-right {
+    width: 43%;
+    background-color: rgb(39, 40, 34);
+    color: whitesmoke;
+  }
+  .red {
     background-color: $red;
   }
-  .yellow{
+  .yellow {
     background-color: $yellow;
   }
-  .green{
+  .green {
     background-color: $green;
   }
-  .blue{
+  .blue {
     background-color: $blue;
   }
-  .purple{
+  .purple {
     background-color: $purple;
+  }
+  pre {
+    font-family: $font-secondary;
+  }
+  .accent {
+    font-family: $font-secondary;
+    color: rgb(156, 211, 45);
+    font-size: 18px;
+  }
+  .accent2 {
+    font-family: $font-secondary;
+    font-size: 18px;
+  }
+  .accent3 {
+    font-weight: bold;
+  }
+  a {
+    color: $black;
   }
 }
 
 // =====ABOUT US CARD FLIP=====
-.about-us-wrapper{
+.about-us-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.lydia{
+.lydia {
   background-image: url('../assets/lydia.jpg');
   background-size: cover;
   border-radius: 5px;
 }
 
-.audrey{
+.audrey {
   background-image: url('../assets/audrey.jpg');
   background-size: cover;
   border-radius: 5px;
 }
 
-.ellis{
+.ellis {
   background-image: url('../assets/ellis.jpg');
   background-size: cover;
   border-radius: 5px;
 }
 
-.fizzo{
+.fizzo {
   background-image: url('../assets/fizzo.jpg');
   background-size: cover;
   border-radius: 5px;
 }
 
-.center{
+.center {
   display: flex;
   justify-content: center;
 }
@@ -249,7 +273,7 @@
   justify-content: center;
   display: flex;
 }
-.about-img{
+.about-img {
   height: 390px;
   border-radius: 10px;
 }
@@ -275,28 +299,47 @@
 }
 .about-card .back {
   transform: rotateY(180deg);
-  background-color: $purple;
-}
-.connect {
-  margin-top: 140px;
-  margin-left: 10px;
-}
-.authors-social{
-  height: 30px;
-}
-
-.back{
+  // background: linear-gradient($purple, $blue);
+  background: linear-gradient($purple, khaki);
+  color: white;
   padding: 10px;
   position: relative;
+  font-size: 32px;
+  line-height: 24px;
+  text-align: justify;
 }
 
-.connect{
+.about-card h3 {
+  text-align: center;
+}
+
+// .back {
+//   padding: 10px;
+//   position: relative;
+//   line-height: 24px;
+//   text-align: justify;
+// }
+
+.connect {
   position: absolute;
-  bottom: 0;
-  margin: 0 auto;
+  bottom: 10px;
+  left: 120px;
+
+  // display: flex;
+  // justify-content: space-evenly;
+  // align-items: flex-end;
+  // margin-top: 0px;
 }
 
-.social-icon{
+img.social-icon:hover {
+  // border: 3px solid white;
+  box-shadow: 0 0 55px 25px #f2ff044f;
+  // border: solid 3px #f2ff044f;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.social-icon {
   height: 40px;
   margin: 8px;
 }
@@ -327,9 +370,4 @@ button.close {
   background-color: white;
   border-color: $purple;
   color: $black;
-}
-
-//====== FORM BUTTON ======
-.x{
-  margin-right: 5px;
 }
