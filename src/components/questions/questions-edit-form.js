@@ -9,15 +9,19 @@ const QuestionsEditForm = props => {
   const [validated, setValidated] = useState(false);
   const [values, setValues] = useState(props.question);
 
+  const difficultyLevelArr = ['Easy', 'Medium', 'Hard'];
+  // console.log(
+  //   'here is the difficulty =====>>>>>>>',
+  //   props.question ? props.question.difficulty : 0
+  // );
+
   let modalDifficulty =
-    ['Easy', 'Medium', 'Hard'].indexOf(
-      props.question ? props.question.difficulty : 0
-    ) + 1;
-  console.log('here is the difficulty =====>>>>>>>', modalDifficulty);
-  console.log(
-    'here is the difficulty =====>>>>>>>',
-    values.difficulty ? values.difficulty : values
-  );
+    difficultyLevelArr.indexOf(props.question ? props.question.difficulty : 0) +
+    1;
+  // console.log(
+  //   'here is the difficulty =====>>>>>>>',
+  //   values.difficulty ? values.difficulty : values
+  // );
 
   const answerLettersArr = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -36,7 +40,7 @@ const QuestionsEditForm = props => {
     }
     setValidated(true);
     props.updateQuestion(values);
-    event.target.reset();
+    // event.target.reset();
   };
 
   return (
@@ -77,7 +81,12 @@ const QuestionsEditForm = props => {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId='formBasicRange'>
-          <Form.Label>Difficulty</Form.Label>
+          <Form.Label>
+            Difficulty{' '}
+            {typeof (values.difficulty === 'number')
+              ? difficultyLevelArr[values.difficulty - 1]
+              : difficultyLevelArr[props.question.difficulty - 1]}
+          </Form.Label>
           <Form.Control
             type='range'
             min='1'
@@ -85,6 +94,7 @@ const QuestionsEditForm = props => {
             name='difficulty'
             onChange={handleChange}
             defaultValue={modalDifficulty}
+            className='sliderInModal'
           />
         </Form.Group>
         <Form.Group controlId='exampleForm.ControlInput2'>
@@ -156,10 +166,11 @@ const QuestionsEditForm = props => {
               key='A'
               name='correct_answer'
               checked={
-                props.question.correct_answer ===
-                `answer_${answerLettersArr[0].toLowerCase()}`
+                values.correct_answer
+                  ? values.correct_answer === `answer_a`
+                  : props.question.correct_answer === `answer_a`
               }
-              value={`answer_${answerLettersArr[0].toLowerCase()}`}
+              value={`answer_a`}
               onChange={handleChange}
             />
             <Form.Check
@@ -168,10 +179,11 @@ const QuestionsEditForm = props => {
               key='B'
               name='correct_answer'
               checked={
-                props.question.correct_answer ===
-                `answer_${answerLettersArr[1].toLowerCase()}`
+                values.correct_answer
+                  ? values.correct_answer === `answer_b`
+                  : props.question.correct_answer === `answer_b`
               }
-              value={`answer_${answerLettersArr[1].toLowerCase()}`}
+              value={`answer_b`}
               onChange={handleChange}
             />
             <If condition={props.question.answers.answer_c}>
@@ -180,11 +192,8 @@ const QuestionsEditForm = props => {
                 label={answerLettersArr[2]}
                 key='C'
                 name='correct_answer'
-                checked={
-                  props.question.correct_answer ===
-                  `answer_${answerLettersArr[2].toLowerCase()}`
-                }
-                value={`answer_${answerLettersArr[2].toLowerCase()}`}
+                checked={props.question.correct_answer === `answer_c`}
+                value={`answer_c`}
                 onChange={handleChange}
               />
             </If>
@@ -194,11 +203,8 @@ const QuestionsEditForm = props => {
                 label={answerLettersArr[3]}
                 key='D'
                 name='correct_answer'
-                checked={
-                  props.question.correct_answer ===
-                  `answer_${answerLettersArr[3].toLowerCase()}`
-                }
-                value={`answer_${answerLettersArr[3].toLowerCase()}`}
+                checked={props.question.correct_answer === `answer_d`}
+                value={`answer_d`}
                 onChange={handleChange}
               />
             </If>
@@ -208,11 +214,8 @@ const QuestionsEditForm = props => {
                 label={answerLettersArr[4]}
                 key='E'
                 name='correct_answer'
-                checked={
-                  props.question.correct_answer ===
-                  `answer_${answerLettersArr[4].toLowerCase()}`
-                }
-                value={`answer_${answerLettersArr[4].toLowerCase()}`}
+                checked={props.question.correct_answer === `answer_e`}
+                value={`answer_e`}
                 onChange={handleChange}
               />
             </If>
@@ -222,18 +225,15 @@ const QuestionsEditForm = props => {
                 label={answerLettersArr[5]}
                 key='F'
                 name='correct_answer'
-                checked={
-                  props.question.correct_answer ===
-                  `answer_${answerLettersArr[5].toLowerCase()}`
-                }
-                value={`answer_${answerLettersArr[5].toLowerCase()}`}
+                checked={props.question.correct_answer === `answer_f`}
+                value={`answer_f`}
                 onChange={handleChange}
               />
             </If>
           </fieldset>
         </Form.Group>
         <Form.Group controlId='exampleForm.ControlTextarea1'>
-          <Form.Label>Tags</Form.Label>
+          <Form.Label>Tags - please separate your tags with commas</Form.Label>
           <Form.Control
             as='textarea'
             rows={3}
