@@ -28,12 +28,7 @@ const QuestionsModal = props => {
           };
         });
     else if (val.tags.length > 0) newTagArr = val.tags;
-    // newTagArr = val.tags
-    //   ? tagValues.map(item => {
-    //       return { name: item };
-    //     })
-    //   : props.question.tags;
-    console.log('WHAT IS ON tagValues, newTagArr?', tagValues, newTagArr);
+    console.log('WHAT IS ON newTagArr?', newTagArr);
 
     if (val.difficulty === '1') {
       val.difficulty = 'Easy';
