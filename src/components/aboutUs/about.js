@@ -127,7 +127,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className='about-card-container'>
+                    <div className='about-card-container'>
             <div className='about-card'>
               <div className='side fizzo'></div>
               <div className='side back'>
@@ -157,12 +157,9 @@ const About = () => {
                     <img className='social-icon' src={linkedin} />
                   </a>
                 </div>
-              <div className="connect">
-                <a href="https://github.com/fizzo999" alt="fizzon github" target="_blank" rel="noopener noreferrer"><img className="social-icon"src={github}/></a>                
-                <a href="https://www.linkedin.com/in/fizzopannosch/" alt="fizzo linkedIn" target="_blank" rel="noopener noreferrer"><img className="social-icon"src={linkedin}/></a>
               </div>
             </div>
-          </div>
+          </div>        
         </section>
       </Container>
     )
