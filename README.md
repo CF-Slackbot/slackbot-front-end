@@ -1,5 +1,7 @@
 # Slack Bot Front End
 
+### [Deployed Site](https://cf-slackbot.netlify.app/)
+
 ## Authors
 🤖 [Audrey Patterson](https://github.com/arpatterson31)
 
