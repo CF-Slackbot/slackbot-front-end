@@ -20,10 +20,10 @@ const App = (props) => {
       <SettingsContext>
         <BrowserRouter>
           <SideBar />
+          <Route exact path="/">
+            {props.auth0.isAuthenticated ? <div className="main"><Dashboard /></div> : <Login />}
+          </Route>
           <div className="main">
-            <Route exact path="/">
-              {props.auth0.isAuthenticated ? <Dashboard /> : <Login />}
-            </Route>
             <Route exact path="/questions">
               <Questions />
             </Route>
